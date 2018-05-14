@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="hibernate.cfg.xml/Hibernate">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.4">
+    <root id="1"/>
+    <schema id="2" parent="1" name="teachon">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="base"/>
+    <schema id="4" parent="1" name="data"/>
+    <schema id="5" parent="1" name="eshop5987"/>
+    <schema id="6" parent="1" name="gdb5987"/>
+    <schema id="7" parent="1" name="hh"/>
+    <schema id="8" parent="1" name="idcard5987"/>
+    <schema id="9" parent="1" name="information_schema"/>
+    <schema id="10" parent="1" name="myshop"/>
+    <schema id="11" parent="1" name="mysql"/>
+    <schema id="12" parent="1" name="people"/>
+    <schema id="13" parent="1" name="performance_schema"/>
+    <schema id="14" parent="1" name="school"/>
+    <schema id="15" parent="1" name="shop"/>
+    <schema id="16" parent="1" name="shopping"/>
+    <schema id="17" parent="1" name="shoppingdb"/>
+    <schema id="18" parent="1" name="smartrcb"/>
+    <schema id="19" parent="1" name="student5987"/>
+    <schema id="20" parent="1" name="sys"/>
+    <schema id="21" parent="1" name="test"/>
+    <schema id="22" parent="1" name="test5987"/>
+    <schema id="23" parent="1" name="testsh"/>
+    <schema id="24" parent="1" name="upf"/>
+    <schema id="25" parent="1" name="wn"/>
+    <table id="26" parent="2" name="exams"/>
+    <table id="27" parent="2" name="groups"/>
+    <table id="28" parent="2" name="gruops_2_users"/>
+    <table id="29" parent="2" name="message"/>
+    <table id="30" parent="2" name="paper"/>
+    <table id="31" parent="2" name="question"/>
+    <table id="32" parent="2" name="scores"/>
+    <table id="33" parent="2" name="users"/>
+    <table id="34" parent="2" name="warn"/>
+    <column id="35" parent="26" name="eid">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="36" parent="26" name="startTimes">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="37" parent="26" name="pid">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="38" parent="26" name="tid">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <index id="39" parent="26" name="FKdrw9u8rs373crwrsdjhk6e9d3">
+      <ColNames>pid</ColNames>
+    </index>
+    <index id="40" parent="26" name="FKkhlo1mx5ot6oce2uif478lhk3">
+      <ColNames>tid</ColNames>
+    </index>
+    <key id="41" parent="26" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>eid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="42" parent="26" name="FKdrw9u8rs373crwrsdjhk6e9d3">
+      <ColNames>pid</ColNames>
+      <RefSchemaName>teachon</RefSchemaName>
+      <RefTableName>paper</RefTableName>
+      <RefColNames>pid</RefColNames>
+    </foreign-key>
+    <foreign-key id="43" parent="26" name="FKkhlo1mx5ot6oce2uif478lhk3">
+      <ColNames>tid</ColNames>
+      <RefSchemaName>teachon</RefSchemaName>
+      <RefTableName>users</RefTableName>
+      <RefColNames>uid</RefColNames>
+    </foreign-key>
+    <column id="44" parent="27" name="gid">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="45" parent="27" name="gname">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <key id="46" parent="27" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>gid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="47" parent="28" name="gid">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="48" parent="28" name="uid">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="49" parent="28" name="FK7yx2x5y2nljuthbsn873rst61">
+      <ColNames>uid</ColNames>
+    </index>
+    <index id="50" parent="28" name="FKhrvaox32qywofjhv11jg9qppd">
+      <ColNames>gid</ColNames>
+    </index>
+    <foreign-key id="51" parent="28" name="FKhrvaox32qywofjhv11jg9qppd">
+      <ColNames>gid</ColNames>
+      <RefSchemaName>teachon</RefSchemaName>
+      <RefTableName>groups</RefTableName>
+      <RefColNames>gid</RefColNames>
+    </foreign-key>
+    <foreign-key id="52" parent="28" name="FK7yx2x5y2nljuthbsn873rst61">
+      <ColNames>uid</ColNames>
+      <RefSchemaName>teachon</RefSchemaName>
+      <RefTableName>users</RefTableName>
+      <RefColNames>uid</RefColNames>
+    </foreign-key>
+    <column id="53" parent="29" name="mid">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="54" parent="29" name="message">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="55" parent="29" name="receiveId">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="56" parent="29" name="sendTime">
+      <Position>4</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="57" parent="29" name="type">
+      <Position>5</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="58" parent="29" name="uid">
+      <Position>6</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <index id="59" parent="29" name="FKgcumtehnvjr6tktojygfw3wbu">
+      <ColNames>uid</ColNames>
+    </index>
+    <key id="60" parent="29" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>mid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="61" parent="29" name="FKgcumtehnvjr6tktojygfw3wbu">
+      <ColNames>uid</ColNames>
+      <RefSchemaName>teachon</RefSchemaName>
+      <RefTableName>users</RefTableName>
+      <RefColNames>uid</RefColNames>
+    </foreign-key>
+    <column id="62" parent="30" name="pid">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="63" parent="30" name="pname">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <key id="64" parent="30" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>pid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="65" parent="31" name="questionid">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="66" parent="31" name="answer">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="67" parent="31" name="pid">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="68" parent="31" name="rightAnswer">
+      <Position>4</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="69" parent="31" name="title">
+      <Position>5</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="70" parent="31" name="type">
+      <Position>6</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <index id="71" parent="31" name="FKgtciw777jn2peqfkb1chxr52q">
+      <ColNames>pid</ColNames>
+    </index>
+    <key id="72" parent="31" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>questionid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="73" parent="31" name="FKgtciw777jn2peqfkb1chxr52q">
+      <ColNames>pid</ColNames>
+      <RefSchemaName>teachon</RefSchemaName>
+      <RefTableName>paper</RefTableName>
+      <RefColNames>pid</RefColNames>
+    </foreign-key>
+    <column id="74" parent="32" name="scoreId">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="75" parent="32" name="endTime">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="76" parent="32" name="score">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="77" parent="32" name="eid">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="78" parent="32" name="sid">
+      <Position>5</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="79" parent="32" name="detials">
+      <Position>6</Position>
+      <DataType>varchar(100)|0</DataType>
+    </column>
+    <index id="80" parent="32" name="FK6d8xyijxblsa6wg9625y94w2g">
+      <ColNames>eid</ColNames>
+    </index>
+    <index id="81" parent="32" name="FKg408upc1pv1xkffm6y4g9nwuh">
+      <ColNames>sid</ColNames>
+    </index>
+    <key id="82" parent="32" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>scoreId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="83" parent="32" name="FK6d8xyijxblsa6wg9625y94w2g">
+      <ColNames>eid</ColNames>
+      <RefSchemaName>teachon</RefSchemaName>
+      <RefTableName>exams</RefTableName>
+      <RefColNames>eid</RefColNames>
+    </foreign-key>
+    <foreign-key id="84" parent="32" name="FKg408upc1pv1xkffm6y4g9nwuh">
+      <ColNames>sid</ColNames>
+      <RefSchemaName>teachon</RefSchemaName>
+      <RefTableName>users</RefTableName>
+      <RefColNames>uid</RefColNames>
+    </foreign-key>
+    <column id="85" parent="33" name="uid">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="86" parent="33" name="passwd">
+      <Position>2</Position>
+      <DataType>varchar(16)|0</DataType>
+    </column>
+    <column id="87" parent="33" name="role">
+      <Position>3</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="88" parent="33" name="userName">
+      <Position>4</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <key id="89" parent="33" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>uid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="90" parent="34" name="wid">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="91" parent="34" name="points">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="92" parent="34" name="warnMessage">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="93" parent="34" name="sid">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="94" parent="34" name="tid">
+      <Position>5</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <index id="95" parent="34" name="FK16k894k9m4u8cniqk41t9c57b">
+      <ColNames>sid</ColNames>
+    </index>
+    <index id="96" parent="34" name="FK200nwja78gludcp1v04sy0xe">
+      <ColNames>tid</ColNames>
+    </index>
+    <key id="97" parent="34" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>wid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="98" parent="34" name="FK16k894k9m4u8cniqk41t9c57b">
+      <ColNames>sid</ColNames>
+      <RefSchemaName>teachon</RefSchemaName>
+      <RefTableName>users</RefTableName>
+      <RefColNames>uid</RefColNames>
+    </foreign-key>
+    <foreign-key id="99" parent="34" name="FK200nwja78gludcp1v04sy0xe">
+      <ColNames>tid</ColNames>
+      <RefSchemaName>teachon</RefSchemaName>
+      <RefTableName>users</RefTableName>
+      <RefColNames>uid</RefColNames>
+    </foreign-key>
+  </database-model>
+</dataSource>
