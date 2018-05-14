@@ -1,0 +1,616 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="description"
+          content="Materialize is a Material Design Admin Template,It's modern, responsive and based on Material Design by Google. ">
+    <meta name="keywords"
+          content="materialize, admin template, dashboard template, flat admin template, responsive admin template,">
+    <title>Materialize - Material Design Admin Template</title>
+
+    <!-- Favicons-->
+    <link rel="icon" href="images/favicon/favicon-32x32.png" sizes="32x32">
+    <!-- Favicons-->
+    <link rel="apple-touch-icon-precomposed" href="images/favicon/apple-touch-icon-152x152.png">
+    <!-- For iPhone -->
+    <meta name="msapplication-TileColor" content="#00bcd4">
+    <meta name="msapplication-TileImage" content="images/favicon/mstile-144x144.png">
+    <!-- For Windows Phone -->
+
+
+    <!-- CORE CSS-->
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
+
+
+    <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
+    <link href="css/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="css/jquery-jvectormap.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="css/chartist.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+
+
+</head>
+
+<body>
+
+
+<!-- //////////////////////////////////////////////////////////////////////////// -->
+
+<!-- START HEADER -->
+<header id="header" class="page-topbar">
+    <!-- start header nav-->
+    <div class="navbar-fixed">
+        <nav class="cyan">
+            <div class="nav-wrapper">
+                <h1 class="logo-wrapper"><a href="index.html" class="brand-logo darken-1"><img
+                        src="img/materialize-logo.png" alt="materialize logo"></a> <span
+                        class="logo-text">Materialize</span></h1>
+                <ul class="right hide-on-med-and-down">
+
+                    <li>
+                        <a href="javascript:void(0);" class="waves-effect waves-block waves-light">
+                            <i class="mdi-maps-local-library" style="margin-top:-7px;margin-bottom:-14px"></i>
+                            <label style="display: block; text-align: center; font-size: 10px; line-height: 14px; cursor: pointer; color:#FFF;">我的课堂</label>
+                        </a>
+
+                    </li>
+
+                    <li>
+                        <a href="javascript:void(0);" class="waves-effect waves-block waves-light">
+                            <i class="mdi-social-poll" style="margin-top:-7px;margin-bottom:-14px"></i>
+                            <label style="display: block; text-align: center; font-size: 10px; line-height: 14px; cursor: pointer; color:#FFF;">我的题库</label>
+                        </a>
+
+                    </li>
+                    <li>
+                        <div class="row" style="width:150px;margin-bottom:-10px;">
+                            <div class="col col s4 m4 l4" style="padding-top:10px;">
+                                <img src="img/avatar.jpg" alt="" class="circle responsive-img valign ">
+                            </div>
+                            <div class="col col s1 m1 l1" style="margin-left:-20px;">
+                                <ul id="profile-dropdown" class="dropdown-content" style="width:20px;">
+                                    <li><a href="#"><i class="mdi-action-face-unlock"></i> Profile</a>
+                                    </li>
+                                    <li><a href="#"><i class="mdi-action-settings"></i> Settings</a>
+                                    </li>
+                                    <li><a href="#"><i class="mdi-communication-live-help"></i> Help</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li><a href="#"><i class="mdi-action-lock-outline"></i> Lock</a>
+                                    </li>
+                                    <li><a href="#"><i class="mdi-hardware-keyboard-tab"></i> Logout</a>
+                                    </li>
+                                </ul>
+
+                                <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn"
+                                   style="width:200px;" href="#" data-activates="profile-dropdown">
+                                    John ▼
+                                </a>
+
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </nav>
+    </div>
+    <!-- end header nav-->
+</header>
+<div>
+    <div class="wrapper" style="background:#e8e8e8;">
+        <div class="btnBox" style="padding-top:20px;">
+            <div class="tool-bar">
+                <div class="smallBtn">
+                    <div style="width: 100%; display: flex; background-color: white; flex-direction: row; box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 2px 0px; position: relative; height: 60px; cursor: pointer;">
+                        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; width: 60px; height: 60px; color: white; background-color: rgb(2, 169, 153); font-size: 28px;">
+                            2
+                        </div>
+                        <div style="position: relative; overflow: hidden; -webkit-box-flex: 1; flex: 1 1 0%; height: 60px;">
+                            <div style="color: rgb(238, 238, 238); font-size: 64px; position: absolute; bottom: -32px; right: -16px;">
+                                <i class="large mdi-alert-error" aria-hidden="true"></i>
+                            </div>
+                            <div style="position: relative; height: 60px; display: flex; flex-direction: column; justify-content: center;">
+                                <h3 style="font-size: 18px; color: rgb(101, 101, 101); margin: 0px; padding: 0px; text-align: center; font-weight: normal; align-items: center; justify-content: center;">
+                                    警告</h3>
+                                <div style="display: flex; flex-direction: row; align-items: center; justify-content: center;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bigBtn" onclick="window.open('/tea/pushpaper.html')">
+                    <div style="width: 100%; padding: 0px; border-radius: 4px;">
+                        <div style="width: 100%; display: flex; background-color: white; flex-direction: row; box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 2px 0px; position: relative; height: 60px; cursor: pointer;">
+                            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; width: 60px; height: 60px; color: white; background-color: rgb(2, 169, 153); font-size: 28px;">
+                                1
+                            </div>
+                            <div style="position: relative; overflow: hidden; -webkit-box-flex: 1; flex: 1 1 0%; height: 60px;">
+                                <div style="color: rgb(238, 238, 238); font-size: 64px; position: absolute; bottom: -32px; right: -16px;">
+                                    <i class="large  mdi-social-poll" aria-hidden="true"></i>
+                                </div>
+                                <div style="position: relative; height: 60px; display: flex; flex-direction: column; justify-content: center;">
+                                    <h3 style="font-size: 18px; color: rgb(101, 101, 101); margin: 0px; padding: 0px; text-align: center; font-weight: normal; align-items: center; justify-content: center;">
+                                        答题</h3>
+                                    <div style="display: flex; flex-direction: row; align-items: center; justify-content: center;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="random-btn">
+                        <div class="cover"></div>
+                        <i class="large  mdi-social-poll" aria-hidden="true"
+                           style="font-size: 24px; margin-bottom: 4px;"></i>
+                        <!-- react-text: 86 -->题库
+                        <!-- /react-text -->
+                    </div>
+                </div>
+                <div class="smallBtn" onclick="window.open('/tea/discuss')">
+                    <div style="width: 100%; display: flex; background-color: white; flex-direction: row; box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 2px 0px; position: relative; height: 60px; cursor: pointer;">
+                        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; width: 60px; height: 60px; color: white; background-color: rgb(2, 169, 153); font-size: 28px;">
+                            1
+                        </div>
+                        <div style="position: relative; overflow: hidden; -webkit-box-flex: 1; flex: 1 1 0%; height: 60px;">
+                            <div style="color: rgb(238, 238, 238); font-size: 64px; position: absolute; bottom: -32px; right: -16px;">
+                                <i class="large mdi-social-people" aria-hidden="true"></i>
+                            </div>
+                            <div style="position: relative; height: 60px; display: flex; flex-direction: column; justify-content: center;">
+                                <h3 style="font-size: 18px; color: rgb(101, 101, 101); margin: 0px; padding: 0px; text-align: center; font-weight: normal; align-items: center; justify-content: center;">
+                                    讨论</h3>
+                                <div style="display: flex; flex-direction: row; align-items: center; justify-content: center;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bigBtn">
+                    <div style="width: 100%; padding: 0px; border-radius: 4px;">
+                        <div style="width: 100%; display: flex; background-color: white; flex-direction: row; box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 2px 0px; position: relative; height: 60px; cursor: pointer;">
+                            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; width: 60px; height: 60px; color: white; background-color: rgb(193, 212, 207); font-size: 28px;">
+                                0
+                            </div>
+                            <div style="position: relative; overflow: hidden; -webkit-box-flex: 1; flex: 1 1 0%; height: 60px;">
+                                <div style="color: rgb(238, 238, 238); font-size: 64px; position: absolute; bottom: -22px; right: -1px;">
+                                    <i class="mdi-action-done-all"
+                                       style="font-size: 64px; position: absolute; top: -66px; right: 0px;"></i>
+                                </div>
+                                <div style="position: relative; height: 60px; display: flex; flex-direction: column; justify-content: center;">
+                                    <h3 style="font-size: 18px; color: rgb(101, 101, 101); margin: 0px; padding: 0px; text-align: center; font-weight: normal; align-items: center; justify-content: center;">
+                                        成绩</h3>
+                                    <div style="display: flex; flex-direction: row; align-items: center; justify-content: center;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="random-btn">
+                        <div class="cover"></div>
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAFBUlEQVRoQ+1ZWSh1XxRfPrMovCEyPHgxhhchyoMH86PIWEKSoSRDMqYMyZQyRh7NDx4UIS+mTA8eDJHhCUWZ+fqdOqd77rn33H2Pz73/r/+3SuKsvdb+7TXs397b5Obm5ov+YjH5B8DI0ft/RGBnZ4e2trYIv5+fn+nr64vMzc3J09OTgoKCKDIykszMzPSKxfv7Oy0vL3N2T05O6O3tjUxMTMja2poCAgI4u4GBgTptykbg6uqKhoaGOAdyYmtrS5mZmUwOYWd7e5tGRkbo8fFR1i4WKCsri5ydnbXqaQVwdHREHR0d9Pr6qnMVeIXExESKj4+X1Z+dnaXp6WlmmxYWFlRcXEze3t4ax2gEgJWvq6uTTN7NzY38/PzI1NSUzs7O6ODggD4+PkSGEYnw8HCNzlZXV2l4eFj0DbZ8fHzI3d2ds7W3t0fn5+ciHYCoqanRGAmNABoaGkRp4+LiwoXSw8NDZPjh4YHGx8dpY2ND+D9qo7m5mRwdHUW6t7e3VFFRweU6LyEhIZSamkp2dnYi3dPTUy51Ly8vhf8jnaqqqiQLIwGAQu3q6hIUMXkMtLS01Bp2rCpWl5fo6GhKSUkR6U9MTNDi4qLwP0QJ0dImLy8vhIVUBVFYWCipMwmAgYEBWl9fF+xWV1dLVl7d6efnJ5WVldH9/T33ycrKinp7e0Vq+fn5XAeD2NvbU2trK/369Uu2FhCJ+vp6QSc0NJRycnJEYyQACgoK6OnpiVNCztfW1so64T/Ozc3R1NSUoNvY2EhOTk7c39fX11RZWSl8S0pKori4OCa78M/XBFpsT0+PPIDs7Gyuz0NiY2MpOTmZydHm5qZo1VEzYWFh3Ni1tTUup3lBNIKDg5nsTk5O0vz8PKeLfWJwcFAeABzzkpCQQPhhEbTdlpYWQTUtLY2ioqK4v5eWlmhsbEz4Vl5errUtqvuamZkh/PCiuhAcKHUyl5ubK3QKf39/KioqYpk//RSAzs5O2t3d5eaADtff3y8fAawiJgMBPWhra5O0OU2IfgIA2nRpaSmBdkCwmSF6qiKJAFodWh4v6NV5eXk6o/ATAPr6+kR7DFozWrQsAKAtKSkR8RT07PT0dNm29ycBoC2Pjo6K9hbwrfb2dglp1LgTq29mQIzejaJEa1TfOfH94uJCFDm5IsZKurq6SqKKlEHLRdHzewqvpGkT01jE/AD16teZQ2oKcgD0tSXXDWXpNOgBuI4qf2F1npGRQREREZz6ysoKR5/1FXQdcCVt5FA2ArwzkLCFhQUuH8FPWARUoqmpiUs7yN3dHbcT81RClw3wLkw6JiZGQgrVx+p1pER+Hh8fy0YE9NjX15ccHBxEvgBif39fQr9VlbDiXl5eAgXRBZQpAixGjKmjVwSMOVFtvvUCwJpCOLXx+c87RlvEaUv9BPfjKcQXMRglaxF+t4gxHkz220X8V7fR/9JGJnfbYRQqoaQZMFMJQ5A5JQCYyZwh6LQSABjDRKcNcaBRCoDpQGOII6VSAExHSkMc6pUCwDidh3pDXKsoBcB0rWKIiy2lAGxsbKi7u1s03ChXi0oBMF0tGupyVwkIpstdGNZ0vY7awB2+qnz3el0fEMzX6zDK+sBxeHgoXDrxk9H3gYMFhN4PHDCq5ImJ5S5VX5Ko6ImJX5WfeuRDneFR5Ecf+VRDa8hnVhxm8Lz6R55ZWfLT2Dp6nYmNPVlN/v8BMHZUfgPZ2N+ump1I6wAAAABJRU5ErkJggg=="
+                             class="img" alt="random">
+
+                    </div>
+                </div>
+            </div>
+            <div class="randomButton">
+                <i class="
+                       mdi-action-settings-applications
+                       "></i>
+                <!-- react-text: 114 -->管理
+                <!-- /react-text -->
+            </div>
+        </div>
+
+
+    </div>
+    <div class="result-overview-box"
+         style="color: rgba(0, 0, 0, 0.87); background-color: rgb(255, 255, 255); box-sizing: border-box; font-family: Roboto, sans-serif; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px; border-radius: 0px;">
+        <div style="padding: 16px 0px; display: flex; flex-direction: column; width: 100%; box-sizing: border-box; overflow: hidden; -webkit-box-flex: 1; flex: 1 1 0%;">
+            <div style="display: flex; flex-direction: row; padding: 0px 20px; height: 25px; flex-shrink: 0; position: relative; justify-content: space-between;">
+                <div style="display: flex; flex-direction: row; align-items: center; -webkit-box-flex: 1; flex: 1 1 0%;">
+                    <div style="overflow: hidden; font-size: 12px; color: rgb(102, 102, 102); line-height: 17px; margin-right: 16px; display: flex;">
+                        <i style="float: left; width: 15px; height: 15px; background-color: rgb(184, 233, 134); margin-right: 3px;"></i><label>优秀</label>
+                        <button tabindex="0" type="button"
+                                style="border: 10px; box-sizing: border-box; display: inline-block; font-family: Roboto, sans-serif; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor: pointer; text-decoration: none; margin: 0px; padding: 0px; outline: none; font-size: inherit; font-weight: inherit; transform: translate(0px, 0px); height: 17px; line-height: 17px; min-width: 17px; color: rgba(0, 0, 0, 0.87); transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; border-radius: 2px; user-select: none; position: relative; overflow: hidden; background-color: rgba(0, 0, 0, 0); text-align: center;">
+                            <div><span
+                                    style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; overflow: hidden; pointer-events: none;"></span><span
+                                    style="position: relative; padding: 0px; vertical-align: middle; letter-spacing: 0px; text-transform: uppercase; font-weight: 500; font-size: 14px;"><i
+                                    class="fa fa-cog" aria-hidden="true" style="margin-left: 3px; font-size: 14px;"></i></span>
+                            </div>
+                        </button>
+                        <div style="display: none;"><!-- react-empty: 236 --><!-- react-empty: 237 --></div>
+                    </div>
+                    <div style="overflow: hidden; font-size: 12px; color: rgb(102, 102, 102); line-height: 17px; margin-right: 16px;">
+                        <i style="float: left; width: 15px; height: 15px; background-color: rgb(72, 209, 174); margin-right: 3px;"></i><label>正确</label>
+                    </div>
+                    <div style="overflow: hidden; font-size: 12px; color: rgb(102, 102, 102); line-height: 17px; margin-right: 16px;">
+                        <i style="float: left; width: 15px; height: 15px; background-color: rgb(255, 176, 186); margin-right: 3px;"></i><label>错误</label>
+                    </div>
+                    <div style="overflow: hidden; font-size: 12px; color: rgb(102, 102, 102); line-height: 17px; margin-right: 16px;">
+                        <i style="float: left; width: 15px; height: 15px; background-color: rgb(237, 237, 237); margin-right: 3px;"></i><label>未答</label>
+                    </div>
+                </div>
+                <div style="display: flex; flex-direction: row;">
+                    <div style="cursor: pointer; position: relative; overflow: visible; display: table; height: auto; width: 130px; font-size: 12px; margin-left: 16px; top: 0px;">
+                        <!-- react-empty: 249 --><input type="checkbox" value="on"
+                                                        style="position: absolute; cursor: inherit; pointer-events: all; opacity: 0; width: 100%; height: 100%; z-index: 2; left: 0px; box-sizing: border-box; padding: 0px; margin: 0px;">
+                        <div style="display: flex; width: 100%; height: 100%;">
+                            <div style="transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; float: left; position: relative; display: block; flex-shrink: 0; width: 36px; margin-right: 8px; margin-left: 0px; padding: 4px 0px 6px 2px;">
+                                <div style="transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; width: 100%; height: 14px; border-radius: 30px; background-color: rgb(189, 189, 189);"></div>
+                                <div style="color: rgba(0, 0, 0, 0.87); background-color: rgb(245, 245, 245); transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; box-sizing: border-box; font-family: Roboto, sans-serif; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px; border-radius: 50%; position: absolute; top: 1px; left: 0px; width: 20px; height: 20px; line-height: 24px;">
+                                    <!-- react-text: 255 --> <!-- /react-text -->
+                                    <div><span
+                                            style="height: 200%; width: 200%; position: absolute; top: -10px; left: -10px; overflow: hidden; pointer-events: none; color: rgba(0, 0, 0, 0.87);"></span>
+                                    </div>
+                                    <div style="position: absolute; overflow: hidden; height: 100%; width: 100%; top: 0px; left: 0px;"></div>
+                                    <!-- react-text: 258 --> <!-- /react-text --></div>
+                            </div>
+                            <label style="float: left; position: relative; display: block; width: calc(100% - 46px); line-height: 24px; color: rgba(0, 0, 0, 0.87); font-family: Roboto, sans-serif;">仅显示已答题</label>
+                        </div>
+                    </div>
+                    <div style="cursor: pointer; position: relative; overflow: visible; display: table; height: auto; width: 130px; font-size: 12px; margin-left: 16px; top: 0px;">
+                        <!-- react-empty: 261 --><input type="checkbox" value="on"
+                                                        style="position: absolute; cursor: inherit; pointer-events: all; opacity: 0; width: 100%; height: 100%; z-index: 2; left: 0px; box-sizing: border-box; padding: 0px; margin: 0px;">
+                        <div style="display: flex; width: 100%; height: 100%;">
+                            <div style="transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; float: left; position: relative; display: block; flex-shrink: 0; width: 36px; margin-right: 8px; margin-left: 0px; padding: 4px 0px 6px 2px;">
+                                <div style="transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; width: 100%; height: 14px; border-radius: 30px; background-color: rgb(189, 189, 189);"></div>
+                                <div style="color: rgba(0, 0, 0, 0.87); background-color: rgb(245, 245, 245); transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; box-sizing: border-box; font-family: Roboto, sans-serif; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px; border-radius: 50%; position: absolute; top: 1px; left: 0px; width: 20px; height: 20px; line-height: 24px;">
+                                    <!-- react-text: 267 --> <!-- /react-text -->
+                                    <div><span
+                                            style="height: 200%; width: 200%; position: absolute; top: -10px; left: -10px; overflow: hidden; pointer-events: none; color: rgba(0, 0, 0, 0.87);"></span>
+                                    </div>
+                                    <div style="position: absolute; overflow: hidden; height: 100%; width: 100%; top: 0px; left: 0px;"></div>
+                                    <!-- react-text: 270 --> <!-- /react-text --></div>
+                            </div>
+                            <label style="float: left; position: relative; display: block; width: calc(100% - 46px); line-height: 24px; color: rgba(0, 0, 0, 0.87); font-family: Roboto, sans-serif;">按成绩排序</label>
+                        </div>
+                    </div>
+                    <div class="more___2_hza">
+                        <div style="transform: scale(0.85);">
+                            <button tabindex="0" type="button"
+                                    style="border: 10px; box-sizing: border-box; display: inline-block; font-family: Roboto, sans-serif; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor: pointer; text-decoration: none; margin: 0px; padding: 0px; outline: none; font-size: inherit; font-weight: inherit; transform: translate(0px, 0px); height: 30px; line-height: 24px; min-width: 88px; color: rgba(0, 0, 0, 0.87); transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; border-radius: 2px; user-select: none; position: relative; overflow: hidden; background-color: rgba(0, 0, 0, 0); text-align: center;">
+                                <div><i class="material-icons" color="rgba(0, 0, 0, 0.87)"
+                                        style="vertical-align: middle; margin-left: 12px; margin-right: 0px; color: rgba(0, 0, 0, 0.87); font-weight: 500;">face</i><span
+                                        style="position: relative; padding-left: 8px; padding-right: 16px; vertical-align: middle; letter-spacing: 0px; text-transform: uppercase; font-weight: 500; font-size: 14px; color: rgba(0, 0, 0, 0.87);">学生管理</span>
+                                </div>
+                            </button>
+                        </div>
+                        <div style="transform: scale(0.85);">
+                            <button tabindex="0" type="button"
+                                    style="border: 10px; box-sizing: border-box; display: inline-block; font-family: Roboto, sans-serif; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor: pointer; text-decoration: none; margin: 0px; padding: 0px; outline: none; font-size: inherit; font-weight: inherit; transform: translate(0px, 0px); height: 30px; line-height: 24px; min-width: 88px; color: rgba(0, 0, 0, 0.87); transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; border-radius: 2px; user-select: none; position: relative; overflow: hidden; background-color: rgba(0, 0, 0, 0); text-align: center;">
+                                <div><i class="material-icons" color="rgba(0, 0, 0, 0.87)"
+                                        style="vertical-align: middle; margin-left: 12px; margin-right: 0px; color: rgba(0, 0, 0, 0.87); font-weight: 500;">people</i><span
+                                        style="position: relative; padding-left: 8px; padding-right: 16px; vertical-align: middle; letter-spacing: 0px; text-transform: uppercase; font-weight: 500; font-size: 14px; color: rgba(0, 0, 0, 0.87);">分组管理</span>
+                                </div>
+                            </button>
+                        </div>
+                        <div style="transform: scale(0.85);">
+                            <button tabindex="0" type="button"
+                                    style="border: 10px; box-sizing: border-box; display: inline-block; font-family: Roboto, sans-serif; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor: pointer; text-decoration: none; margin: 0px; padding: 0px; outline: none; font-size: inherit; font-weight: inherit; transform: translate(0px, 0px); height: 30px; line-height: 24px; min-width: 88px; color: rgba(0, 0, 0, 0.87); transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; border-radius: 2px; user-select: none; position: relative; overflow: hidden; background-color: rgba(0, 0, 0, 0); text-align: center;">
+                                <div><i class="material-icons" color="rgba(0, 0, 0, 0.87)"
+                                        style="vertical-align: middle; margin-left: 12px; margin-right: 0px; color: rgba(0, 0, 0, 0.87); font-weight: 500;">local_activity</i><span
+                                        style="position: relative; padding-left: 8px; padding-right: 16px; vertical-align: middle; letter-spacing: 0px; text-transform: uppercase; font-weight: 500; font-size: 14px; color: rgba(0, 0, 0, 0.87);">评分管理</span>
+                                </div>
+                            </button>
+                        </div>
+                        <div style="transform: scale(0.85);">
+                            <button tabindex="0" type="button"
+                                    style="border: 10px; box-sizing: border-box; display: inline-block; font-family: Roboto, sans-serif; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor: pointer; text-decoration: none; margin: 0px; padding: 0px; outline: none; font-size: inherit; font-weight: inherit; transform: translate(0px, 0px); height: 30px; line-height: 24px; min-width: 88px; color: rgba(0, 0, 0, 0.87); transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; border-radius: 2px; user-select: none; position: relative; overflow: hidden; background-color: rgba(0, 0, 0, 0); text-align: center;">
+                                <div><i class="material-icons" color="rgba(0, 0, 0, 0.87)"
+                                        style="vertical-align: middle; margin-left: 12px; margin-right: 0px; color: rgba(0, 0, 0, 0.87); font-weight: 500;">open_in_new</i><span
+                                        style="position: relative; padding-left: 8px; padding-right: 16px; vertical-align: middle; letter-spacing: 0px; text-transform: uppercase; font-weight: 500; font-size: 14px; color: rgba(0, 0, 0, 0.87);">成绩导出</span>
+                                </div>
+                            </button>
+                            <div style="display: none;"><!-- react-empty: 294 --><!-- react-empty: 295 --></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="-webkit-box-flex: 1; flex: 1 1 0%; display: flex; flex-direction: column; margin-top: 12px; position: relative; overflow: hidden;">
+                <div style="height: 50px; display: flex; flex-direction: row; position: absolute; top: 0px; left: 0px; right: 0px; overflow: hidden; z-index: 20; background-color: white; padding-right: 0px;">
+                    <div style="display: flex; flex-direction: row; width: 280px; margin-right: 5px; padding: 0px 8px 0px 12px; box-sizing: border-box;">
+                        <div style="width: 33.333%; font-size: 12px; color: rgb(170, 170, 170); text-align: center; border-bottom: 1px solid rgb(200, 200, 200);">
+                            <label>学生</label>
+                            <div style="color: rgb(102, 102, 102); font-size: 24px; line-height: 36px;">2</div>
+                        </div>
+                        <div style="width: 33.333%; font-size: 12px; color: rgb(170, 170, 170); text-align: center; border-bottom: 1px solid rgb(200, 200, 200);">
+                            <label>组卷</label>
+                            <div style="color: rgb(102, 102, 102); font-size: 24px; line-height: 36px;">0</div>
+                        </div>
+                        <div style="width: 33.333%; font-size: 12px; color: rgb(170, 170, 170); text-align: center; border-bottom: 1px solid rgb(200, 200, 200);">
+                            <label>题目</label>
+                            <div style="color: rgb(102, 102, 102); font-size: 24px; line-height: 36px;">2</div>
+                        </div>
+                        <div style="width: 33.333%; font-size: 12px; color: rgb(170, 170, 170); text-align: center; border-bottom: 1px solid rgb(200, 200, 200);">
+                            <label>平均分</label>
+                            <div style="color: rgb(102, 102, 102); font-size: 24px; line-height: 36px;">50.0</div>
+                        </div>
+                    </div>
+                    <div class="hidden-scrollbar___23dzL"
+                         style="-webkit-box-flex: 1; flex: 1 1 0%; display: flex; flex-direction: row; overflow-x: auto; overflow-y: hidden;">
+                        <div style="width: 54px; margin-right: 5px;">
+                            <div data-tip="未指定章节" currentitem="false"
+                                 style="border-radius: 4px 4px 0px 0px; height: 24px; line-height: 24px; background-color: rgb(102, 102, 102); text-align: center; padding: 0px 6px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: white; font-size: 12px;">
+                                <span style="display: inline-block; width: 12px; height: 12px; border-radius: 3px; background-color: white; color: rgb(102, 102, 102); line-height: 1; margin-right: 3px;">0</span><span>未指定章节</span>
+                            </div>
+                            <div style="background-color: rgba(102, 102, 102, 0.07); border-top: 1px solid rgba(102, 102, 102, 0.2); border-right: 1px solid rgba(102, 102, 102, 0.2); border-bottom: none; border-left: 1px solid rgba(102, 102, 102, 0.2); border-image: initial; display: flex; flex-direction: row; height: 26px; line-height: 29px; box-sizing: border-box;">
+                                <div style="font-size: 12px; width: 26px; text-align: center; color: rgb(76, 190, 161);">
+                                    1
+                                </div>
+                                <div style="font-size: 12px; width: 26px; text-align: center; color: rgb(76, 190, 161);">
+                                    2
+                                </div>
+                            </div>
+                            <div class="__react_component_tooltip place-top type-dark " data-id="tooltip"></div>
+                        </div>
+                    </div>
+                </div>
+                <div style="-webkit-box-flex: 1; flex: 1 1 0%; overflow-x: hidden; overflow-y: auto;">
+                    <div style="display: flex; flex-direction: row;">
+                        <div style="width: 280px; margin-right: 5px; padding-right: 15px; padding-top: 52px; box-sizing: border-box;">
+                            <div style="display: flex; justify-content: flex-start; flex-direction: row; margin: 0px 0px 5px;">
+                                <div style="width: 5px; background-color: red;"></div>
+                                <ul style="-webkit-box-flex: 1; flex: 1 1 0%; padding: 0px 0px 0px 5px; margin: 0px; box-sizing: border-box; overflow: hidden;">
+                                    <li style="display: flex; flex-direction: row; justify-content: space-between; height: 26px; line-height: 26px;">
+                                        <span style="font-size: 12px; width: 24px; color: rgb(74, 74, 74);">1</span>
+                                        <div title="你猜"
+                                             style="width: 64px; text-align: left; color: rgb(74, 74, 74); font-size: 16px; margin-right: 6px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                            你猜
+                                        </div>
+                                        <div title="123453"
+                                             style="color: rgb(74, 74, 74); font-size: 12px; overflow: hidden; text-align: left; flex: 0 0 auto; font-family: Consolas, Monaco, monospace; width: 15ch;">
+                                            123453
+                                        </div>
+                                        <div style="color: rgb(74, 74, 74); font-size: 16px; -webkit-box-flex: 1; flex: 1 1 0%; text-align: right;">
+                                            0.1
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div style="display: flex; justify-content: flex-start; flex-direction: row; margin: 0px 0px 5px;">
+                                <div style="width: 5px; background-color: chartreuse;"></div>
+                                <ul style="-webkit-box-flex: 1; flex: 1 1 0%; padding: 0px 0px 0px 5px; margin: 0px; box-sizing: border-box; overflow: hidden;">
+                                    <li style="display: flex; flex-direction: row; justify-content: space-between; height: 26px; line-height: 26px;">
+                                        <span style="font-size: 12px; width: 24px; color: rgb(74, 74, 74);">2</span>
+                                        <div title="吃饭"
+                                             style="width: 64px; text-align: left; color: rgb(74, 74, 74); font-size: 16px; margin-right: 6px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                            吃饭
+                                        </div>
+                                        <div title="23333"
+                                             style="color: rgb(74, 74, 74); font-size: 12px; overflow: hidden; text-align: left; flex: 0 0 auto; font-family: Consolas, Monaco, monospace; width: 15ch;">
+                                            23333
+                                        </div>
+                                        <div style="color: rgb(74, 74, 74); font-size: 16px; -webkit-box-flex: 1; flex: 1 1 0%; text-align: right;">
+                                            100
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div style="display: flex; justify-content: flex-start; flex-direction: row; margin: 0px 0px 5px;">
+                                <div style="width: 5px; background-color: rgba(200, 200, 200, 0.5);"></div>
+                                <ul style="-webkit-box-flex: 1; flex: 1 1 0%; padding: 0px 0px 0px 5px; margin: 0px; box-sizing: border-box; overflow: hidden;"></ul>
+                            </div>
+                        </div>
+                        <div style="-webkit-box-flex: 1; flex: 1 1 0%; display: flex; flex-direction: row; overflow-x: auto; overflow-y: hidden; position: relative; padding-top: 50px;">
+                            <div style="width: 54px; margin-right: 5px; background-color: rgba(102, 102, 102, 0.07); border-top: none; border-right: 1px solid rgba(102, 102, 102, 0.2); border-bottom: 1px solid rgba(102, 102, 102, 0.2); border-left: 1px solid rgba(102, 102, 102, 0.2); border-image: initial; box-sizing: border-box; display: flex; flex-direction: row; padding-top: 2px;">
+                                <div style="width: 26px;">
+                                    <div style="margin: 0px 0px 5px;">
+                                        <div style="width: 26px; height: 26px; border-radius: 4px; border: 1px solid white; font-size: 12px; text-align: center; color: transparent; line-height: 24px; box-sizing: border-box; background-color: rgb(255, 176, 186);">
+                                            0.1
+                                        </div>
+                                    </div>
+                                    <div style="margin: 0px 0px 5px;">
+                                        <div style="width: 26px; height: 26px; border-radius: 4px; border: 1px solid white; font-size: 12px; text-align: center; color: transparent; line-height: 24px; box-sizing: border-box; background-color: rgb(255, 176, 186);">
+                                            100
+                                        </div>
+                                    </div>
+                                    <div style="margin: 0px 0px 5px;"></div>
+                                </div>
+                                <div style="width: 26px;">
+                                    <div style="margin: 0px 0px 5px;">
+                                        <div style="width: 26px; height: 26px; border-radius: 4px; border: 1px solid white; font-size: 12px; text-align: center; color: transparent; line-height: 24px; box-sizing: border-box; background-color: rgb(237, 237, 237);">
+                                            0
+                                        </div>
+                                    </div>
+                                    <div style="margin: 0px 0px 5px;">
+                                        <div style="width: 26px; height: 26px; border-radius: 4px; border: 1px solid white; font-size: 12px; text-align: center; color: transparent; line-height: 24px; box-sizing: border-box; background-color: rgb(237, 237, 237);">
+                                            0
+                                        </div>
+                                    </div>
+                                    <div style="margin: 0px 0px 5px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed-action-btn toolbar">
+        <a class="btn-floating btn-large red">
+            <i class="large material-icons">mode_edit</i>
+        </a>
+        <ul>
+            <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">insert_chart</i></a></li>
+            <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">format_quote</i></a></li>
+            <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">publish</i></a></li>
+            <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">attach_file</i></a></li>
+        </ul>
+    </div>
+
+</div>
+
+
+<!-- END HEADER -->
+
+<!-- //////////////////////////////////////////////////////////////////////////// -->
+
+<!-- START MAIN -->
+
+<!-- END MAIN -->
+
+
+<!-- //////////////////////////////////////////////////////////////////////////// -->
+
+<!-- START FOOTER -->
+
+<!-- END FOOTER -->
+
+
+<!-- ================================================
+Scripts
+================================================ -->
+
+<!-- jQuery Library -->
+<script src="js/jquery-1.10.2.js"></script>
+<!--materialize js-->
+<script type="text/javascript" src="js/materialize.min.js"></script>
+
+
+<!--plugins.js - Some Specific JS codes for Plugin Settings-->
+<script type="text/javascript" src="js/plugins.js"></script>
+
+<style>
+    .container {
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+        width: 100%;
+        min-height: 600px;
+        background-color: #fafafa;
+    }
+
+    .drawer > div {
+        overflow: hidden !important;
+    }
+
+    .layout {
+        display: flex;
+        flex-direction: row;
+        padding: 20px;
+        width: 100%;
+        box-sizing: border-box;
+        flex: 1;
+    }
+
+    .left-side {
+        flex: 1 0;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .left-side .result-overview-box {
+        flex: 1;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .right-side {
+        width: 300px;
+        margin-left: 20px;
+    }
+
+    .right-side .class-info-show {
+        width: 300px;
+        height: 225px;
+        background-color: #fff;
+    }
+
+    .banner {
+        width: 100%;
+        height: 80px;
+    }
+
+    .tool-bar {
+        width: calc(100% - 98px);
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        height: 60px;
+        flex-shrink: 0;
+    }
+
+    .tool-bar .bigBtn {
+        width: calc((100% - 216px) / 4 + 60px);
+        height: 60px;
+        display: flex;
+        margin-right: 24px;
+        background-color: #FFF;
+        box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.12);
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+    .tool-bar .smallBtn {
+        width: calc((100% - 216px) / 4);
+        height: 60px;
+        display: flex;
+        margin-right: 24px;
+        background-color: #FFF;
+        box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.12);
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+    .random-btn {
+        width: 80px;
+        height: 60px;
+        background-color: #eee;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        font-size: 12px;
+        color: #666;
+        border-left: none;
+        box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.12);
+    }
+
+    .random-btn .img {
+        width: 24px;
+        height: 24px;
+        margin-bottom: 4px;
+    }
+
+    .random-btn .cover {
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        position: absolute;
+        z-index: 10;
+        cursor: pointer;
+    }
+
+    .randomButton {
+        flex: none;
+        width: 96px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background-color: #FFF;
+        border-radius: 4px;
+        font-size: 12px;
+        cursor: pointer;
+        border: 1px solid #C8C8C8;
+        box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.12);
+    }
+
+    .btnBox {
+        width: 100%;
+        display: flex;
+    }
+
+</style>
+</body>
+
+</html>
