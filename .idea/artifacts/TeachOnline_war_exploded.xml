@@ -10,6 +10,7 @@
           <element id="library" level="project" name="lib" />
           <element id="library" level="project" name="mysql-connector-java-5.1.16-bin" />
           <element id="library" level="project" name="asm-5.2" />
+          <element id="library" level="project" name="Spring-4.3.16.RELEASE" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="TeachOnline/web/Web" />

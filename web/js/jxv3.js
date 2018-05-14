@@ -26,7 +26,7 @@ myCharHistory={}
 $(function () {
     init()
    loadAllGroup()
-    checkmsg()
+    //checkmsg()
 })
 function returnx() {
 

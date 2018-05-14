@@ -126,3 +126,17 @@ function getTh() {
         return false;
     }
 }
+function answers() {
+    map={}
+    $(".radioOrCheck:checked").each(function(){
+        console.info($(this).val());
+        var ans=$(this).val();
+        questionNo=$(this).val().match(/\d+/)
+        choice=$(this).val().match(/[A-Da-d]/)
+        map[questionNo]=choice.toString();
+
+
+    })
+    console.info(JSON.stringify(map))
+
+}

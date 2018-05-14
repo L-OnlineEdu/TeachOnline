@@ -14,6 +14,7 @@
       <root url="jar://E:/web框架/15struts/struts2-convention-plugin-2.5.13.jar!/" />
       <root url="jar://E:/web框架/15struts/struts2-core-2.5.13.jar!/" />
       <root url="jar://E:/web框架/15struts/struts2-json-plugin-2.5.13.jar!/" />
+      <root url="jar://E:/web框架/struts-2.5.13-all/struts-2.5.13/lib/struts2-spring-plugin-2.5.13.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

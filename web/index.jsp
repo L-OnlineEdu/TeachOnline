@@ -11,9 +11,12 @@
     <title>$Title$</title>
   </head>
   <body>
+  <h3>用户stu1 密码ss1</h3>
+  <h3>用户stu2 密码ss2</h3>
+  <h3>用户tea1 密码tt1</h3>
+  <h3>用户stu2 密码tt2</h3>
     <form action="login">
-      用户名<input type="text" name="userName"/>
-      密码<input type="text" name="passWd"/>
+
       <input type="submit" name="login" value="登录"/>
     </form>
 

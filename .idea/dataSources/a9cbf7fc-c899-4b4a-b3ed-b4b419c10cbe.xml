@@ -239,92 +239,96 @@
       <Position>5</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <index id="79" parent="32" name="FK6d8xyijxblsa6wg9625y94w2g">
+    <column id="79" parent="32" name="detials">
+      <Position>6</Position>
+      <DataType>varchar(100)|0</DataType>
+    </column>
+    <index id="80" parent="32" name="FK6d8xyijxblsa6wg9625y94w2g">
       <ColNames>eid</ColNames>
     </index>
-    <index id="80" parent="32" name="FKg408upc1pv1xkffm6y4g9nwuh">
+    <index id="81" parent="32" name="FKg408upc1pv1xkffm6y4g9nwuh">
       <ColNames>sid</ColNames>
     </index>
-    <key id="81" parent="32" name="PRIMARY">
+    <key id="82" parent="32" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>scoreId</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="82" parent="32" name="FK6d8xyijxblsa6wg9625y94w2g">
+    <foreign-key id="83" parent="32" name="FK6d8xyijxblsa6wg9625y94w2g">
       <ColNames>eid</ColNames>
       <RefSchemaName>teachon</RefSchemaName>
       <RefTableName>exams</RefTableName>
       <RefColNames>eid</RefColNames>
     </foreign-key>
-    <foreign-key id="83" parent="32" name="FKg408upc1pv1xkffm6y4g9nwuh">
+    <foreign-key id="84" parent="32" name="FKg408upc1pv1xkffm6y4g9nwuh">
       <ColNames>sid</ColNames>
       <RefSchemaName>teachon</RefSchemaName>
       <RefTableName>users</RefTableName>
       <RefColNames>uid</RefColNames>
     </foreign-key>
-    <column id="84" parent="33" name="uid">
+    <column id="85" parent="33" name="uid">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="85" parent="33" name="passwd">
+    <column id="86" parent="33" name="passwd">
       <Position>2</Position>
       <DataType>varchar(16)|0</DataType>
     </column>
-    <column id="86" parent="33" name="role">
+    <column id="87" parent="33" name="role">
       <Position>3</Position>
       <DataType>varchar(50)|0</DataType>
     </column>
-    <column id="87" parent="33" name="userName">
+    <column id="88" parent="33" name="userName">
       <Position>4</Position>
       <DataType>varchar(50)|0</DataType>
     </column>
-    <key id="88" parent="33" name="PRIMARY">
+    <key id="89" parent="33" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>uid</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="89" parent="34" name="wid">
+    <column id="90" parent="34" name="wid">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="90" parent="34" name="points">
+    <column id="91" parent="34" name="points">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="91" parent="34" name="warnMessage">
+    <column id="92" parent="34" name="warnMessage">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="92" parent="34" name="sid">
+    <column id="93" parent="34" name="sid">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="93" parent="34" name="tid">
+    <column id="94" parent="34" name="tid">
       <Position>5</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <index id="94" parent="34" name="FK16k894k9m4u8cniqk41t9c57b">
+    <index id="95" parent="34" name="FK16k894k9m4u8cniqk41t9c57b">
       <ColNames>sid</ColNames>
     </index>
-    <index id="95" parent="34" name="FK200nwja78gludcp1v04sy0xe">
+    <index id="96" parent="34" name="FK200nwja78gludcp1v04sy0xe">
       <ColNames>tid</ColNames>
     </index>
-    <key id="96" parent="34" name="PRIMARY">
+    <key id="97" parent="34" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>wid</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="97" parent="34" name="FK16k894k9m4u8cniqk41t9c57b">
+    <foreign-key id="98" parent="34" name="FK16k894k9m4u8cniqk41t9c57b">
       <ColNames>sid</ColNames>
       <RefSchemaName>teachon</RefSchemaName>
       <RefTableName>users</RefTableName>
       <RefColNames>uid</RefColNames>
     </foreign-key>
-    <foreign-key id="98" parent="34" name="FK200nwja78gludcp1v04sy0xe">
+    <foreign-key id="99" parent="34" name="FK200nwja78gludcp1v04sy0xe">
       <ColNames>tid</ColNames>
       <RefSchemaName>teachon</RefSchemaName>
       <RefTableName>users</RefTableName>

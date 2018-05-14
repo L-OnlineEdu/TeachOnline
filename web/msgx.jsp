@@ -37,7 +37,8 @@
         <div class="panel panel-default">
             <div class="panel-heading">
 
-                Recent Chat History  <input style="width:100px" type="text" class="form-control" placeholder="RID" id="receId" value="2"/>
+                RID <input style="width:100px" type="text" class="form-control" placeholder="RID" id="receId" value="2"/>
+                TYPES <input style="width:100px" type="text" class="form-control" placeholder="TYPES" id="types" value="1"/>
             </div>
             <div class="panel-body" style="padding: 0px;">
                 <div class="chat-widget-main" id="msgbox">

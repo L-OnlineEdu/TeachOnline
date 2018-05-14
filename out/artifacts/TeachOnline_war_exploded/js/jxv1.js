@@ -23,9 +23,11 @@ $(function () {
 function send() {
     sendMsg=$("#sendMsg").val()
     receId=$("#receId").val()
+    types=$("#types").val()
+
     $.ajax({
         url:"/sendM",
-        data:{"receiveid":receId,"msg":sendMsg},
+        data:{"receiveid":receId,"msg":sendMsg,"msgtype":types},
         success:function (data) {
             //alert("发送成功")
             var content={"sender":"我","msg":sendMsg}

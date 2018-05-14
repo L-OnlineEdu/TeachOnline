@@ -4,6 +4,7 @@ $(function () {
 function send() {
     sendMsg=$("#sendMsg").val()
     receId=$("#receId").val()
+
     $.ajax({
         url:"/sendM",
         data:{"receiveid":receId,"msg":sendMsg},
