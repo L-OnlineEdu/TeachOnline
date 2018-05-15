@@ -13,7 +13,7 @@ public class TemporalMsgs {
     private TemporalMsgs(){}
 
     @Autowired
-    @Qualifier("pushLongPooling")//webSocketPush //pushLongPooling
+    @Qualifier("webSocketPush")//webSocketPush //pushLongPooling
     private PushMsg myPush;
 
     public PushMsg getMyPush() {

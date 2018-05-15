@@ -5,17 +5,9 @@
 
 <head>
     <meta charset="utf-8">
-<<<<<<< HEAD
-    <title>在线课堂</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico">
-    <link rel="shortcut icon" type="image/png" href="/assets/favicon.png">
-=======
     <title>讨论</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
->>>>>>> devw
     <link href="css/discss.css" rel="stylesheet">
 
 
@@ -23,14 +15,7 @@
     <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
     <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
 
-<<<<<<< HEAD
-
-
     <link type="text/css" href="css/chat.css" rel="stylesheet">
-    <link type="text/css" href="../alert/css/alert.css" rel="stylesheet">
-=======
-    <link type="text/css" href="css/chat.css" rel="stylesheet">
->>>>>>> devw
 </head>
 
 <body>

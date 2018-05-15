@@ -8,7 +8,6 @@ public class SystemMessage extends Message {
     public static final int SystemMessageType_PaperPush=3;
     public static final int SystemMessageType_PaperFinish=4;
     public static final int SystemMessageType_Warn=5;
-    public static final int SystemMessageType_AnsQ=6;
     public static final int SystemMessageType_Other=0;
     private int systemMessageType;
     private int beAlertId;

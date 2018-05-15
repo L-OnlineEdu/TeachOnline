@@ -1,7 +1,5 @@
 package com.pojo;
 
-import com.google.gson.annotations.Expose;
-
 import javax.persistence.*;
 import java.util.List;
 
