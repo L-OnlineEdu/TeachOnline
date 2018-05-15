@@ -250,7 +250,11 @@
 <script type="text/javascript" src="js/popwin.js"></script>
 <script type="text/javascript">
     function openWin(){
+<<<<<<< HEAD
         popWin.showWin("http://localhost:8081/teacher/exam.jsp",1000,560,function(){
+=======
+        popWin.showWin("http://localhost:8080/teacher/exam.jsp",1000,560,function(){
+>>>>>>> devw
             //alert("关闭并执行回调函数");
         });
     }

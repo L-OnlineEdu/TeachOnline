@@ -17,26 +17,74 @@ String.prototype.temp = function(obj) {
     })
 }
 discussType={"broad":"1","group":"2","person":"3","sys":"4"}  /*课堂讨论 1 */ /*小组讨论 2 */ /* 个人聊天 3 */ /*系统消息 4 */
+<<<<<<< HEAD
 systemMType={"askQ":"1","handsUp":"2","paperPush":"3","paperFinish":"4","warn":"5","other":"0"}
+=======
+systemMType={"askQ":"1","handsUp":"2","paperPush":"3","paperFinish":"4","warn":"5","ansQ":"6","other":"0"}
+>>>>>>> devw
 currentFilterType="1";
 
 receIdx=0
 myuid=0
 myCharHistory={}
+<<<<<<< HEAD
 $(function (){
     init()
     initLongConnnect()
+=======
+
+$(function (){
+    init()
+    //initLongConnnect()
+>>>>>>> devw
     //loadAllGroup()
    // checkmsg()
    /* $('#dicBigBox').scroll(function () {
         initDrop();
     })*/
+<<<<<<< HEAD
+=======
+   initWS()
+>>>>>>> devw
 })
 
 function init() {
 
     myuid=$("#userId").val()
+<<<<<<< HEAD
 
+=======
+    $(".discussionTitleCard").hover(function () {
+        gdiv="#g"+$(this).attr("id").substr(3)
+      //  if ($(gdiv).children().length>0){
+            $(this).children(".count").html($(gdiv).children().length)
+        //}
+
+    })
+}
+function initWS() {
+    var webSocket = new WebSocket("ws://localhost:8080/ws/chat");
+    webSocket.onopen = function(event){
+        console.log("连接成功");
+        console.log(event);
+    };
+    webSocket.onerror = function(event){
+        console.log("连接失败");
+        console.log(event);
+    };
+    webSocket.onclose = function(event){
+        console.log("Socket连接断开");
+        console.log(event);
+    };
+    webSocket.onmessage = function(event){
+        //接受来自服务器的消息
+        var obj = eval('(' + event.data + ')');
+        var objl=[]
+        objl.push(obj)
+        jiexi(objl)
+        // console.info(event)
+    }
+>>>>>>> devw
 }
 //加载组内成员
 function loadGmember(groupId,gname) {
@@ -123,7 +171,17 @@ function initGroupListView(groupList) {
         ss+=temlplate.temp(v)
     })
     $("#tablists").append(ss)
+<<<<<<< HEAD
 
+=======
+    $(".discussionTitleCard").hover(function () {
+        gdiv="#g"+$(this).attr("id").substr(3)
+        //  if ($(gdiv).children().length>0){
+        $(this).children(".count").html($(gdiv).children().length)
+        //}
+
+    })
+>>>>>>> devw
 }
 //发送消息
 function send() {
@@ -222,6 +280,10 @@ function onclose(){
 function groupMode() {
     if ($(".list").children().length<=1){
         loadAllGroup();
+<<<<<<< HEAD
+=======
+
+>>>>>>> devw
     }
 
 }
@@ -270,7 +332,12 @@ function jiexi(msgList) {
                        /* $("#p"+val.receiveId).append("<li class='rightChat'>"+val.message+"</li>")*/
                        console.info("收到一条自己的消息")
                      else
+<<<<<<< HEAD
                          $("#p"+chatId).append("<li class='leftChat'>"+val.message+"</li>")
+=======
+                         $("#p"+chatId).append("<li class='leftChat' data-uid='"+val.sender.uid+"'>"+val.message+"</li>")
+
+>>>>>>> devw
 
                      $("#p"+chatId).scrollTop( $("#p"+chatId)[0].scrollHeight);
                 if ($("#p"+chatId).css("display")=='none'){
@@ -290,14 +357,39 @@ function jiexi(msgList) {
              case discussType.broad:
                  //群组消息
                  if ($("#g"+val.receiveId).length<1){
+<<<<<<< HEAD
                      $("#dicBigBox").prepend("<div class=\"dl\" id='g"+val.receiveId+"'></div>")
                  }
                  tx=$("#newMesTemplate").html();
+=======
+                   //  console.info(val.receiveId+" "+val.types)
+                     if(currentFilterType==val.types&&receIdx==val.receiveId)
+                        $("#dicBigBox").prepend("<div class=\"dl\" id='g"+val.receiveId+"'></div>")
+                     else{
+                         $("#dicBigBox").prepend("<div class=\"dl\" style='display: none' id='g"+val.receiveId+"'></div>")
+                         groupMode();
+                     }
+
+                 }
+
+                     if(val.sender.role=='stu') {
+                         tx=$("#newMesTemplate").html();
+                     }
+                     else{
+                         tx=$("#newMesTemplateT").html();
+                     }
+
+
+>>>>>>> devw
                  ss= tx.temp(val)
                  $("#g"+val.receiveId).append(ss)
 
                  if ($("#g"+val.receiveId).css("display")=='none'){
+<<<<<<< HEAD
                      Materialize.toast('<span>收到一条新消息</span><a class="btn light-blue">查看<a>', 5000)
+=======
+                     Materialize.toast('<span>收到一条新消息</span><a class="btn light-blue" onclick="openGroupMessage('+val.receiveId+')">查看<a>', 5000)
+>>>>>>> devw
                  }
                  $("#g"+val.receiveId).scrollTop( $("#g"+val.receiveId)[0].scrollHeight );
                  initDrop()
@@ -319,11 +411,20 @@ function initDrop() {
         alignment: 'left' // Displays dropdown with edge aligned to the left of button
     });
 }
+<<<<<<< HEAD
 function turnMessage(messageIdx) {
     //console.info(typeof messageIdx)
 
     if (messageIdx.substr(0,1)=="p"){
         messageId="#"+messageIdx
+=======
+
+function turnMessage(messageIdx) {
+    //console.info(typeof messageIdx)
+    messageId="#"+messageIdx
+    if (messageIdx.substr(0,1)=="p"){
+
+>>>>>>> devw
         $(messageId).show();
         $(messageId).siblings(":not(':last')").hide();
         $("#personModal").openModal();
@@ -378,12 +479,18 @@ function alertMessage(message) {
                             swal.showInputError("你需要输入答案！");
                             return false
                         }
+<<<<<<< HEAD
 
                         swal("非常好！", "你输入了：" + inputValue,"success");
+=======
+                        sendAnsQs(message.sender.uid,inputValue)
+
+>>>>>>> devw
                     });
 
                 break;
             case  systemMType.handsUp:
+<<<<<<< HEAD
                 swal({
                     title: "举手",
                     text: message.sender.userName+"向您举起了手",
@@ -398,6 +505,40 @@ function alertMessage(message) {
                 extime=marr[3]
                 local="/stu/takeExam?examid="+eid+"&examTime="+extime
                 if(M.dialog5){
+=======
+
+
+                swal({
+                        title: "举手",
+                        text: message.sender.userName+"向您举起了手",
+                        imageUrl: "swx/handsup.png",
+                        showCancelButton: true,
+                        confirmButtonText: "对他提问",
+                        cancelButtonText: "忽略",
+                        closeOnConfirm: false,
+                        closeOnCancel: true
+                    },
+                    function(isConfirm){
+                        if (isConfirm) {
+                            askQx(message.sender.uid)
+                        }
+                    });
+                break;
+            case  systemMType.paperPush:
+                //if(cRole=='tea'){return;}
+                m=message.message
+            /*    marr=m.split(":")
+                pid=marr[1]
+                local="stu/takeExam?paperid="+pid*/
+                swal({
+                    title: "自动关闭弹窗！"+m,
+                    text: "5秒后自动关闭。",
+                    timer: 5000,
+                    showConfirmButton: false
+                });
+
+               /* if(M.dialog5){
+>>>>>>> devw
                     return M.dialog5.show();
                 }
                 M.dialog5 = jqueryAlert({
@@ -416,7 +557,11 @@ function alertMessage(message) {
                             window.location.href=local;
                         }
                     }
+<<<<<<< HEAD
                 })
+=======
+                })*/
+>>>>>>> devw
 
                 break;
             case  systemMType.paperFinish:
@@ -433,6 +578,19 @@ function alertMessage(message) {
                         closeOnConfirm: true
                     })
                 break;
+<<<<<<< HEAD
+=======
+
+            case systemMType.ansQ:
+                swal({
+                        title: message.sender.userName+"回答了问题",
+                        text: "回答："+message.message,
+                        type: "info",
+                        showLoaderOnConfirm: true
+                    });
+                break;
+
+>>>>>>> devw
             case  systemMType.other:
                 break;
 
@@ -443,7 +601,11 @@ function alertMessage(message) {
         }
 
     }else {
+<<<<<<< HEAD
 
+=======
+             console.info(message+"  ->e")
+>>>>>>> devw
         //普通消息
     }
 }
@@ -510,11 +672,19 @@ function warnx(x) {
         });
 }
 function handsupx(x) {
+<<<<<<< HEAD
     teacherUid=$(x).parent().attr("id").substr(4)
     swal({
             title: "确定举手吗？",
             text: "你将无法撤销该操作！",
             type: "warning",
+=======
+    teacherUid=x//$(x).parent().attr("id").substr(4)
+    swal({
+            title: "确定举手吗？",
+            text: "将向老师举手",
+            type: "info",
+>>>>>>> devw
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",
             confirmButtonText: "举手！",
@@ -567,7 +737,11 @@ function sendMessage(sendMsg) {
                 if ($(ulid).length<1){
                     $("#personMBox").prepend("<ul class=\"chat-thread\" id='p"+receIdx+"' style='display: block'></ul>")
                 }
+<<<<<<< HEAD
                 $(ulid).append("<li class='rightChat'>"+sendMsg+"</li>")
+=======
+                $(ulid).append("<li  class='rightChat' data-uid='"+myuid+"'>"+sendMsg+"</li>")
+>>>>>>> devw
                 $(ulid).scrollTop( $(ulid)[0].scrollHeight );
                 $("#messagex").val("")
 
@@ -596,6 +770,10 @@ function askQx(x) {
             text: "输入你的问题：",
             type: "input",
             showCancelButton: true,
+<<<<<<< HEAD
+=======
+            cancelButtonText: "取消",
+>>>>>>> devw
             closeOnConfirm: false,
             animation: "slide-from-top",
             inputPlaceholder: "输入一些话"
@@ -655,6 +833,30 @@ function sendAskQs(uid,question) {
         }
     })
 }
+<<<<<<< HEAD
+=======
+function sendAnsQs(uid,answer) {
+    $.ajax({
+        url:"/ansQ",
+        data:{"receverid":uid,"messageDetial":answer},
+        success:function (data) {
+            if (data.msg="success"){
+                swal("回答成功", "已回答","success");
+            }else {
+                swal("失败", "回答失败:)",
+                    "error");
+
+            console.info("fail")
+
+            }
+
+        },
+        error:function () {
+            console.info("失败")
+        }
+    })
+}
+>>>>>>> devw
 function sendHandsUp(uid,question) {
     $.ajax({
         url:"/hdup",
@@ -676,4 +878,24 @@ function openPersonMsgDialog(receiveID) {
     receIdx=receiveID
     currentFilterType=discussType.person;
     turnMessage("p"+receIdx)
+<<<<<<< HEAD
+=======
+}
+function openGroupMessage(groupid){
+    groupDiv="#g"+groupid
+    console.info(groupDiv)
+    $("#tab"+groupid).addClass("slgroup")
+    $("#tab"+groupid).siblings().removeClass("slgroup")
+    if ($(groupDiv).html()==undefined){
+        $("#dicBigBox").children(":not(':last')").hide();
+    }
+    if(groupid!=0)
+        currentFilterType=discussType.group
+    else if (groupid==0)
+        currentFilterType=discussType.broad;
+    else
+        console.info("error"+groupid)
+    receIdx=groupid;
+    turnMessage("g"+groupid)
+>>>>>>> devw
 }

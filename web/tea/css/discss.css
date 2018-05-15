@@ -216,12 +216,17 @@
   .discussionTitleCard .count {
     flex: none;
     color: #FFF;
+<<<<<<< HEAD
     display: block;
+=======
+    display: none;
+>>>>>>> devw
     margin-left: 8px;
     padding: 4px 7px;
     border-radius: 14px;
     background-color: #000;
   }
+<<<<<<< HEAD
   
   .discussionTitleCard .deleteBtn {
     width: 24px;
@@ -248,6 +253,38 @@
   
   .discussionTitleCard:hover .count {
     display: none;
+=======
+
+span.badgex {
+  min-width: 3rem;
+  padding: 0 6px;
+  text-align: center;
+  font-size: 1rem;
+  line-height: inherit;
+  color: #ffffff;
+  float: left;
+  box-sizing: border-box;
+  font-weight: 300;
+  background-color: #26a69a;
+  border-radius: 2px;
+  z-index: 1;
+}
+
+
+
+
+span.badgex[data-badge-caption]::after {
+  content: " " attr(data-badge-caption);
+}
+
+
+.discussionTitleCard:hover {
+    background-color: rgba(76, 190, 161, 0.05);
+  }
+
+  .discussionTitleCard:hover .count {
+    display: block;
+>>>>>>> devw
   }
   
   .infoBox {

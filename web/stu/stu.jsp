@@ -8,6 +8,12 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> devw
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -15,7 +21,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>远程教育考试平台_在线考试</title>
+<<<<<<< HEAD
 
+=======
+>>>>>>> devw
     <link href="main.css" rel="stylesheet" type="text/css" />
     <link href="iconfont.css" rel="stylesheet" type="text/css" />
     <link href="test.css" rel="stylesheet" type="text/css" />
@@ -26,15 +35,19 @@
             color:#fff;
         }
 
+<<<<<<< HEAD
         #modal1{
             background: #0e93d7;
             width: 320px;
         }
 
+=======
+>>>>>>> devw
     </style>
 </head>
 
 <body>
+<<<<<<< HEAD
 
 <div class="main">
     <!--nr start-->
@@ -44,16 +57,28 @@
         <input type="hidden" name="answers" id="answers">
     </form>
 
+=======
+<div class="main">
+    <!--nr start-->
+    <input type="hidden" value="<s:property value="paperid"/>" id="th">
+>>>>>>> devw
     <div class="test_main">
         <div class="nr_left">
             <div class="test">
                 <form action="" method="post">
                     <div class="test_title">
+<<<<<<< HEAD
                         <input type="hidden" name="paperid" value="<s:property value="paperid"/>" id="th">
                         <p class="test_time">
                             <i class="icon iconfont">&#xe6fb;</i><b class="alt-1"><s:property value="examTimeStr"/></b>
                         </p>
                         <font><input type="button" name="test_jiaojuan" onclick="answers()" value="交卷"></font>
+=======
+                        <p class="test_time">
+                            <i class="icon iconfont">&#xe6fb;</i><b class="alt-1">01:40</b>
+                        </p>
+                        <font><input type="button" name="test_jiaojuan" value="交卷"></font>
+>>>>>>> devw
                     </div>
 
                     <div class="test_content">
@@ -67,6 +92,12 @@
                     <div class="test_content_nr">
                         <ul id="tbbox">
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> devw
                         </ul>
                     </div>
                     <textarea style="display: none" id="tb">
@@ -84,12 +115,23 @@
                                                    value="%questionId%A"
                                                    id="0_answer_%keyx%_option_1" onclick="checkx(this,'%rightAnswer%')"
                                             />
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> devw
                                             <label for="0_answer_%keyx%_option_1">
                                                 A.
                                                 <p class="ue" style="display: inline;">%a00%</p>
                                             </label>
                                         </li>
+<<<<<<< HEAD
                                         <li class="option">
+=======
+
+                                        <li class="option">
+
+>>>>>>> devw
                                             <input type="radio" class="radioOrCheck" name="xx%questionId%"
                                                    value="%questionId%B"
                                                    id="0_answer_%keyx%_option_2" onclick="checkx(this,'%rightAnswer%')"
@@ -225,7 +267,11 @@
                             <i class="icon iconfont">&#xe692;</i>答题卡
                         </h1>
                         <p class="test_time">
+<<<<<<< HEAD
                             <i class="icon iconfont">&#xe6fb;</i><b class="alt-1"><s:property value="examTimeStr"/></b>
+=======
+                            <i class="icon iconfont">&#xe6fb;</i><b class="alt-1">01:40</b>
+>>>>>>> devw
                         </p>
                     </div>
 
@@ -240,6 +286,13 @@
                         <div class="rt_content_nr answerSheet">
                             <ul id="dtk">
 
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> devw
                             </ul>
                             <textarea style="display: none" id="dtkt">
                                     <li id="dtk%questionId%"><a href="#qu_0_%keyx%">%key1%</a></li>
@@ -247,7 +300,10 @@
                             <hr>
                             <span>答对</span><i class="qright">0</i><span>题</span>
                             <span>答错</span><i class="qwrong">0</i><span>题</span>
+<<<<<<< HEAD
                             <span>目前得分</span><i id="prescores">0</i><span>分</span>
+=======
+>>>>>>> devw
                         </div>
                     </div>
 
@@ -263,6 +319,11 @@
 
                                     <li><a href="#qu_1_0">1</a></li>
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> devw
                             </ul>
                         </div>
                     </div> -->
@@ -277,11 +338,14 @@
 </div>
 
 <script src="jquery-1.11.3.min.js"></script>
+<<<<<<< HEAD
 <link rel="stylesheet" type="text/css" href="../tea/swx/sweetalert.css">
 <script src="../tea/swx/sweetalert-dev.js"></script>
 <script type="text/javascript" src="../tea/js/materialize.min.js"></script>
 
 
+=======
+>>>>>>> devw
 <script src="jquery.easy-pie-chart.js"></script>
 <!--时间js-->
 <script src="time/jquery.countdown.js"></script>
@@ -315,7 +379,10 @@
         });
     });
 </script>
+<<<<<<< HEAD
 
+=======
+>>>>>>> devw
 <script src="stu.js"></script>
 
 

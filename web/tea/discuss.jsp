@@ -5,11 +5,17 @@
 
 <head>
     <meta charset="utf-8">
+<<<<<<< HEAD
     <title>在线课堂</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico">
     <link rel="shortcut icon" type="image/png" href="/assets/favicon.png">
+=======
+    <title>讨论</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+>>>>>>> devw
     <link href="css/discss.css" rel="stylesheet">
 
 
@@ -17,10 +23,14 @@
     <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
     <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
 
+<<<<<<< HEAD
 
 
     <link type="text/css" href="css/chat.css" rel="stylesheet">
     <link type="text/css" href="../alert/css/alert.css" rel="stylesheet">
+=======
+    <link type="text/css" href="css/chat.css" rel="stylesheet">
+>>>>>>> devw
 </head>
 
 <body>
@@ -64,11 +74,19 @@
 
             <!--ss-->
             <ul class="chat-thread">
+<<<<<<< HEAD
                 <li class="leftChat">Are we meeting today?</li>
                 <li class="leftChat">I was thinking after lunch, I have a meeting in the morning</li>
 
                 <li class="leftChat">Are we meeting today?</li>
                 <li class="leftChat">I was thinking after lunch, I have a meeting in the morning</li>
+=======
+                <li class="leftChat" data-uid="1">Are we meeting today?</li>
+                <li class="leftChat" data-uid="1">I was thinking after lunch, I have a meeting in the morning</li>
+
+                <li class="leftChat" data-uid="1">Are we meeting today?</li>
+                <li class="leftChat" data-uid="1">I was thinking after lunch, I have a meeting in the morning</li>
+>>>>>>> devw
 
             </ul>
 
@@ -107,7 +125,11 @@
 
 <!-- jQuery Library -->
 <script src="js/jquery-1.11.2.min.js"></script>
+<<<<<<< HEAD
 <script src="../alert/js/alert.js"></script>
+=======
+
+>>>>>>> devw
 <%--me--%>
 <script type="text/javascript" src="jxv4.js"></script>
 <!--materialize js-->
@@ -165,7 +187,11 @@
                                 <li>
                                     <div class="row" style="width:150px;margin-bottom:-10px;">
                                         <div class="col col s4 m4 l4" style="padding-top:10px;">
+<<<<<<< HEAD
                                             <img src="img/avatar.jpg" alt="" class="circle responsive-img valign ">
+=======
+                                            <img src="/ava/${user.uid}.jpg" alt="" class="circle responsive-img valign ">
+>>>>>>> devw
                                         </div>
                                         <div class="col col s1 m1 l1" style="margin-left:-20px;">
                                             <ul id="profile-dropdown" class="dropdown-content" style="width:20px;">
@@ -213,15 +239,23 @@
                     <div class="discussionPanel" style="width: 270px;">
 
                         <div class="list" id="tablists">
+<<<<<<< HEAD
                             <div class="discussionTitleCard" style="background-color: rgb(76, 190, 161);" id="tab0">
+=======
+                            <div class="discussionTitleCard slgroup" onclick="openGroupMessage('0')" id="tab0">
+>>>>>>> devw
                                 <div class="infoBox">
                                         <span style="font-size: 20px; margin-right: 4px;">课堂讨论</span>
 
                                 </div>
                                 <div class="count" style="background-color: rgb(67, 134, 112);">0</div>
+<<<<<<< HEAD
                                 <div class="deleteBtn">
                                     <i class="mdi-action-delete"></i>
                                 </div>
+=======
+
+>>>>>>> devw
                             </div>
                         </div>
 
@@ -244,7 +278,11 @@
                 <div class="bottomCard">
                     <div class="discussionBottomBar">
                         <div class="leftBtns">
+<<<<<<< HEAD
                             <button  class="btn waves-effect waves-light" type="button" style="border: 10px;  margin: 0px 4px 0px 0px; padding: 0px; outline: none; font-size: inherit; font-weight: inherit; transform: translate(0px, 0px); height: 56px; line-height: 52px; min-width: 70px; color: rgba(0, 0, 0, 0.87); transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; border-radius: 5px 0px 0px 5px; user-select: none; position: relative; overflow: hidden; text-align: center;">
+=======
+                          <%--  <button  class="btn waves-effect waves-light" type="button" style="border: 10px;  margin: 0px 4px 0px 0px; padding: 0px; outline: none; font-size: inherit; font-weight: inherit; transform: translate(0px, 0px); height: 56px; line-height: 52px; min-width: 70px; color: rgba(0, 0, 0, 0.87); transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; border-radius: 5px 0px 0px 5px; user-select: none; position: relative; overflow: hidden; text-align: center;">
+>>>>>>> devw
                                 <div>
                                     <i class="defaultIcon" style="right: -5px; bottom: -5px;  position: absolute;"></i>
                                     <span style="position: relative; padding: 0px; vertical-align: middle; letter-spacing: 0px; text-transform: uppercase; font-weight: 500; font-size: 20px; color: rgb(255, 255, 255);">提问</span>
@@ -261,17 +299,28 @@
                                     <i class="danmakuIcon" style="right: -5px; bottom: -5px; opacity: 0.3; position: absolute;"></i>
                                     <span style="position: relative; padding: 0px; vertical-align: middle; letter-spacing: 0px; text-transform: uppercase; font-weight: 500; font-size: 20px; color: rgb(255, 255, 255);">分组</span>
                                 </div>
+<<<<<<< HEAD
                             </button>
+=======
+                            </button>--%>
+>>>>>>> devw
                             <button class="btn waves-effect waves-light" onclick="sendMsgx()" type="button" style="border: 10px; box-sizing: border-box; display: inline-block; font-family: Roboto, sans-serif; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor: pointer; text-decoration: none; margin: 0px 16px 0px 12px; padding: 0px; outline: none; font-size: inherit; font-weight: inherit; transform: translate(0px, 0px); height: 56px; line-height: 56px; min-width: 88px; color: rgb(255, 255, 255); transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; border-radius: 2px; user-select: none; position: relative; overflow: hidden; text-align: center;">
                                 <div>
 
                                     <span style="position: relative; padding-left: 8px; padding-right: 16px; vertical-align: middle; letter-spacing: 0px; text-transform: uppercase; font-weight: 500; font-size: 20px;">发送消息</span>
                                 </div>
                             </button>
+<<<<<<< HEAD
                             <button class="btn waves-effect waves-light" type="button" style="border: 10px; box-sizing: border-box; display: inline-block; font-family: Roboto, sans-serif; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor: pointer; text-decoration: none; margin: 0px 16px 0px 0px; padding: 0px; outline: none; font-size: inherit; font-weight: inherit; transform: translate(0px, 0px); height: 56px; line-height: 56px; min-width: 88px; color: rgb(255, 255, 255); transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; border-radius: 2px; user-select: none; position: relative; overflow: hidden; background-color: rgb(102, 102, 102); text-align: center;">
                                 <div>
                                     <span style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; overflow: hidden; pointer-events: none;"></span>
                                     <span style="position: relative; padding-left: 8px; padding-right: 16px; vertical-align: middle; letter-spacing: 0px; text-transform: uppercase; font-weight: 500; font-size: 20px;">删除讨论</span>
+=======
+                            <button class="btn waves-effect waves-light"  onclick="groupMode()" type="button" style="border: 10px; box-sizing: border-box; display: inline-block; font-family: Roboto, sans-serif; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor: pointer; text-decoration: none; margin: 0px 16px 0px 0px; padding: 0px; outline: none; font-size: inherit; font-weight: inherit; transform: translate(0px, 0px); height: 56px; line-height: 56px; min-width: 88px; color: rgb(255, 255, 255); transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; border-radius: 2px; user-select: none; position: relative; overflow: hidden;  text-align: center;">
+                                <div>
+                                    <span style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; overflow: hidden; pointer-events: none;"></span>
+                                    <span style="position: relative; padding-left: 8px; padding-right: 16px; vertical-align: middle; letter-spacing: 0px; text-transform: uppercase; font-weight: 500; font-size: 20px;">分组讨论</span>
+>>>>>>> devw
                                 </div>
                             </button>
                         </div>
@@ -288,9 +337,39 @@
 <input type="hidden" id="userName" value="<s:property value="user.userName"/>">
 <input type="hidden" id="userId" value="<s:property value="user.uid"/>">
 <input type="hidden" id="userRole" value="<s:property value="user.role"/>">
+<<<<<<< HEAD
 <script type="text/html" id="newMesTemplate">
     <div class="discussionCard" style="padding: 16px 12px 12px;">
         <img size="64"   class="dropdown-button" href="#!" data-activates="dropdown%mid%"                                                      src="https://app.teachermate.com.cn/assets/avatars/avatar_4.png"
+=======
+<script type="text/html" id="newMesTemplateT">
+    <div class="discussionCard" style="padding: 16px 12px 12px;">
+        <img size="64"   class="dropdown-button" href="#!" data-activates="dropdown%mid%" src="/ava/%sender.uid%.jpg"
+             class="avatar"
+             style="color: rgb(255, 255, 255); background-color: rgb(255, 255, 255); user-select: none; display: inline-flex; align-items: center; justify-content: center; font-size: 32px; border-radius: 50%; height: 64px; width: 64px;">
+        <ul id="dropdown%mid%" class="dropdown-content" style="position:fixed;">
+            <li><a href="#!" onclick="handsupx('%sender.uid%')">举手</a></li>
+            <li><a href="#!" onclick="openPersonMsgDialog('%sender.uid%')">发消息</a></li>
+        </ul>
+        <div class="contentInfo">
+
+            <div class="title">
+                <div class="name"><span style="margin-right: 0px;"></span>
+
+                    <div class="time">%sendTime%</div>
+                    <span class="badgex" data-badge-caption="老师消息"></span>
+                </div>
+
+            </div>
+            <div class="content">%message%</div>
+        </div>
+    </div>
+
+</script>
+<script type="text/html" id="newMesTemplate">
+    <div class="discussionCard" style="padding: 16px 12px 12px;">
+        <img size="64"   class="dropdown-button" href="#!" data-activates="dropdown%mid%" src="/ava/%sender.uid%.jpg"
+>>>>>>> devw
              class="avatar"
              style="color: rgb(255, 255, 255); background-color: rgb(255, 255, 255); user-select: none; display: inline-flex; align-items: center; justify-content: center; font-size: 32px; border-radius: 50%; height: 64px; width: 64px;">
         <ul id="dropdown%mid%" class="dropdown-content" style="position:fixed;">
@@ -313,12 +392,17 @@
 </script>
 <script type="text/html" id="disscussTemplate">
 
+<<<<<<< HEAD
     <div class="discussionTitleCard" id="tab%gid%">
+=======
+    <div class="discussionTitleCard" onclick="openGroupMessage('%gid%')" id="tab%gid%">
+>>>>>>> devw
         <div class="infoBox">
             <span style="font-size: 20px; margin-right: 4px;">%gname%</span>
 
         </div>
         <div class="count" style="background-color: rgb(67, 134, 112);">0</div>
+<<<<<<< HEAD
         <div class="deleteBtn">
             <i class="mdi-action-delete"></i>
         </div>
@@ -327,6 +411,17 @@
 
 
 
+=======
+
+    </div>
+</script>
+
+<style>
+    .slgroup{
+        background-color: rgb(76, 190, 161);
+    }
+</style>
+>>>>>>> devw
 </body>
 
 </html>

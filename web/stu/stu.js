@@ -29,7 +29,10 @@ String.prototype.answer = function(obj) {
 function checkx(th,right) {
     var r=$(".qright")
     var w=$(".qwrong")
+<<<<<<< HEAD
     var ps=$("#prescores")
+=======
+>>>>>>> devw
     rightnum=parseInt(r.html())
     wrongnum=parseInt(w.html())
     nx=$(th).attr('name')
@@ -40,7 +43,10 @@ function checkx(th,right) {
 
         $("#dtk"+nx.substr(2)).css("background","green")
         r.html(rightnum+1)
+<<<<<<< HEAD
         ps.html(r.html())
+=======
+>>>>>>> devw
     }else {
         $("#dtk"+nx.substr(2)).css("background","red")
         $("#ans"+nx.substr(2)).show()
@@ -128,6 +134,7 @@ function getTh() {
         return false;
     }
 }
+<<<<<<< HEAD
 
 function answers() {
     swal({
@@ -180,4 +187,19 @@ function answers() {
                     "error");
             }
         });
+=======
+function answers() {
+    map={}
+    $(".radioOrCheck:checked").each(function(){
+        console.info($(this).val());
+        var ans=$(this).val();
+        questionNo=$(this).val().match(/\d+/)
+        choice=$(this).val().match(/[A-Da-d]/)
+        map[questionNo]=choice.toString();
+
+
+    })
+    console.info(JSON.stringify(map))
+
+>>>>>>> devw
 }
