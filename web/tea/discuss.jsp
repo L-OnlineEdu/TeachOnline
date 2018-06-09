@@ -8,14 +8,16 @@
     <title>讨论</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link href="css/discss.css" rel="stylesheet">
+    <link href="/utils/css/discss.css" rel="stylesheet">
 
 
     <!-- CORE CSS-->
-    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
-    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="/utils/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="/utils/css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
 
-    <link type="text/css" href="css/chat.css" rel="stylesheet">
+    <link type="text/css" href="/utils/css/chat.css" rel="stylesheet">
+    <link type="text/css" href="/utils/alert/css/alert.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -101,17 +103,17 @@
 </div>
 
 <!-- jQuery Library -->
-<script src="js/jquery-1.11.2.min.js"></script>
-
+<script src="/utils/js/jquery-1.11.2.min.js"></script>
+<script src="/utils/alert/js/alert.js"></script>
 <%--me--%>
 <script type="text/javascript" src="jxv4.js"></script>
 <!--materialize js-->
-<script type="text/javascript" src="js/materialize.min.js"></script>
+<script type="text/javascript" src="/utils/js/materialize.min.js"></script>
 
 <!--plugins.js - Some Specific JS codes for Plugin Settings-->
-<script type="text/javascript" src="js/plugins.js"></script>
-<link rel="stylesheet" type="text/css" href="swx/sweetalert.css">
-<script src="swx/sweetalert-dev.js"></script>
+<script type="text/javascript" src="/utils/js/plugins.js"></script>
+<link rel="stylesheet" type="text/css" href="/utils/swx/sweetalert.css">
+<script src="/utils/swx/sweetalert-dev.js"></script>
 
 <div class="pace  pace-inactive">
     <div class="pace-progress" data-progress-text="100%" data-progress="99" style="transform: translate3d(100%, 0px, 0px);">
@@ -129,80 +131,57 @@
     <div class="page">
                 <div class="bgColor">
             <!-- START HEADER -->
-            <header id="header" class="page-topbar">
-                <!-- start header nav-->
-                <div class="navbar-fixed">
-                    <nav class="cyan">
-                        <div class="nav-wrapper">
-                            <h1 class="logo-wrapper">
-                                <a href="index.html" class="brand-logo darken-1">
-                                    <img src="img/materialize-logo.png" alt="materialize logo">
-                                </a>
-                                <span class="logo-text">Materialize</span>
-                            </h1>
-                            <ul class="right hide-on-med-and-down">
+                    <header id="header" class="page-topbar">
+                        <!-- start header nav-->
+                        <div class="navbar-fixed">
+                            <nav class="cyan">
+                                <div class="nav-wrapper">
+                                    <h1 class="logo-wrapper"><a href="/tea/home.jsp" class="brand-logo darken-1"><img src="/utils/img/materialize-logo.png" alt="materialize logo"></a> <span class="logo-text">Materialize</span></h1>
+                                    <ul class="right hide-on-med-and-down">
 
-                                <li>
-                                    <a href="javascript:void(0);" class="waves-effect waves-block waves-light">
-                                        <i class="mdi-maps-local-library" style="margin-top:-7px;margin-bottom:-14px"></i>
-                                        <label style="display: block; text-align: center; font-size: 10px; line-height: 14px; cursor: pointer; color:#FFF;">我的课堂</label>
-                                    </a>
-
-                                </li>
-
-                                <li>
-                                    <a href="javascript:void(0);" class="waves-effect waves-block waves-light">
-                                        <i class="mdi-social-poll" style="margin-top:-7px;margin-bottom:-14px"></i>
-                                        <label style="display: block; text-align: center; font-size: 10px; line-height: 14px; cursor: pointer; color:#FFF;">我的题库</label>
-                                    </a>
-
-                                </li>
-                                <li>
-                                    <div class="row" style="width:150px;margin-bottom:-10px;">
-                                        <div class="col col s4 m4 l4" style="padding-top:10px;">
-                                            <img src="/ava/${user.uid}.jpg" alt="" class="circle responsive-img valign ">
-                                        </div>
-                                        <div class="col col s1 m1 l1" style="margin-left:-20px;">
-                                            <ul id="profile-dropdown" class="dropdown-content" style="width:20px;">
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="mdi-action-face-unlock"></i> Profile</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="mdi-action-settings"></i> Settings</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="mdi-communication-live-help"></i> Help</a>
-                                                </li>
-                                                <li class="divider"></li>
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="mdi-action-lock-outline"></i> Lock</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="mdi-hardware-keyboard-tab"></i> Logout</a>
-                                                </li>
-                                            </ul>
-
-                                            <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn" style="width:200px;" href="#" data-activates="profile-dropdown">
-                                                John ▼
+                                        <li>
+                                            <a href="/tea/home.jsp" class="waves-effect waves-block waves-light">
+                                                <i class="mdi-maps-local-library" style="margin-top:-7px;margin-bottom:-14px"></i>
+                                                <label style="display: block; text-align: center; font-size: 10px; line-height: 14px; cursor: pointer; color:#FFF;">我的课堂</label>
                                             </a>
 
-                                        </div>
-                                    </div>
-                                </li>
+                                        </li>
 
-                            </ul>
+                                        <li>
+                                            <a href="/tea/pushpaper.jsp" class="waves-effect waves-block waves-light">
+                                                <i class="mdi-social-poll" style="margin-top:-7px;margin-bottom:-14px"></i>
+                                                <label style="display: block; text-align: center; font-size: 10px; line-height: 14px; cursor: pointer; color:#FFF;">我的题库</label>
+                                            </a>
 
+                                        </li>
+                                        <li>
+                                            <div class="row" style="width:150px;margin-bottom:-10px;" >
+                                                <div class="col col s4 m4 l4" style="padding-top:10px;">
+                                                    <img src="/utils/ava/${user.uid}.jpg" alt="" class="circle responsive-img valign ">
+                                                </div>
+                                                <div class="col col s1 m1 l1" style="margin-left:-20px;">
+                                                    <ul id="profile-dropdown" class="dropdown-content" style="width:20px;">
+                                                        <li><a href="/login">退出</a>
+                                                        </li>
+
+                                                    </ul>
+
+                                                    <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn" style="width:200px;"  href="#" data-activates="profile-dropdown">
+                                                        ${user.userName} ▼
+                                                    </a>
+
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                    </ul>
+
+                                </div>
+
+                            </nav>
                         </div>
-
-                    </nav>
-                </div>
-                <!-- end header nav-->
-            </header>
+                        <!-- end header nav-->
+                    </header>
             <div class="discussions" style="height: calc(100% - 60px);">
                 <div class="discussionPanel">
                     <div class="discussionPanel" style="width: 270px;">
@@ -237,24 +216,6 @@
                 <div class="bottomCard">
                     <div class="discussionBottomBar">
                         <div class="leftBtns">
-                          <%--  <button  class="btn waves-effect waves-light" type="button" style="border: 10px;  margin: 0px 4px 0px 0px; padding: 0px; outline: none; font-size: inherit; font-weight: inherit; transform: translate(0px, 0px); height: 56px; line-height: 52px; min-width: 70px; color: rgba(0, 0, 0, 0.87); transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; border-radius: 5px 0px 0px 5px; user-select: none; position: relative; overflow: hidden; text-align: center;">
-                                <div>
-                                    <i class="defaultIcon" style="right: -5px; bottom: -5px;  position: absolute;"></i>
-                                    <span style="position: relative; padding: 0px; vertical-align: middle; letter-spacing: 0px; text-transform: uppercase; font-weight: 500; font-size: 20px; color: rgb(255, 255, 255);">提问</span>
-                                </div>
-                            </button>
-                            <button class="btn waves-effect waves-light" type="button" style="border: 10px; box-sizing: border-box; display: inline-block; font-family: Roboto, sans-serif; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor: pointer; text-decoration: none; margin: 0px 4px 0px 0px; padding: 0px; outline: none; font-size: inherit; font-weight: inherit; transform: translate(0px, 0px); height: 56px; line-height: 52px; min-width: 70px; color: rgba(0, 0, 0, 0.87); transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; border-radius: 2px; user-select: none; position: relative; overflow: hidden; text-align: center;">
-                                <div>
-                                    <i class="cloudIcon" style="right: -5px; bottom: -5px; opacity: 0.3; position: absolute;"></i>
-                                    <span style="position: relative; padding: 0px; vertical-align: middle; letter-spacing: 0px; text-transform: uppercase; font-weight: 500; font-size: 20px; color: rgb(255, 255, 255);">警告</span>
-                                </div>
-                            </button>
-                            <button class="btn waves-effect waves-light" onclick="groupMode()" type="button" style="border: 10px; box-sizing: border-box; display: inline-block; font-family: Roboto, sans-serif; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor: pointer; text-decoration: none; margin: 0px 4px 0px 0px; padding: 0px; outline: none; font-size: inherit; font-weight: inherit; transform: translate(0px, 0px); height: 56px; line-height: 52px; min-width: 70px; color: rgba(0, 0, 0, 0.87); transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; border-radius: 0px 5px 5px 0px; user-select: none; position: relative; overflow: hidden;  text-align: center;">
-                                <div>
-                                    <i class="danmakuIcon" style="right: -5px; bottom: -5px; opacity: 0.3; position: absolute;"></i>
-                                    <span style="position: relative; padding: 0px; vertical-align: middle; letter-spacing: 0px; text-transform: uppercase; font-weight: 500; font-size: 20px; color: rgb(255, 255, 255);">分组</span>
-                                </div>
-                            </button>--%>
                             <button class="btn waves-effect waves-light" onclick="sendMsgx()" type="button" style="border: 10px; box-sizing: border-box; display: inline-block; font-family: Roboto, sans-serif; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor: pointer; text-decoration: none; margin: 0px 16px 0px 12px; padding: 0px; outline: none; font-size: inherit; font-weight: inherit; transform: translate(0px, 0px); height: 56px; line-height: 56px; min-width: 88px; color: rgb(255, 255, 255); transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; border-radius: 2px; user-select: none; position: relative; overflow: hidden; text-align: center;">
                                 <div>
 
@@ -283,7 +244,7 @@
 <input type="hidden" id="userRole" value="<s:property value="user.role"/>">
 <script type="text/html" id="newMesTemplateT">
     <div class="discussionCard" style="padding: 16px 12px 12px;">
-        <img size="64"   class="dropdown-button" href="#!" data-activates="dropdown%mid%" src="/ava/%sender.uid%.jpg"
+        <img size="64"   class="dropdown-button" href="#!" data-activates="dropdown%mid%" src="/utils/ava/%sender.uid%.jpg"
              class="avatar"
              style="color: rgb(255, 255, 255); background-color: rgb(255, 255, 255); user-select: none; display: inline-flex; align-items: center; justify-content: center; font-size: 32px; border-radius: 50%; height: 64px; width: 64px;">
         <ul id="dropdown%mid%" class="dropdown-content" style="position:fixed;">
@@ -307,7 +268,7 @@
 </script>
 <script type="text/html" id="newMesTemplate">
     <div class="discussionCard" style="padding: 16px 12px 12px;">
-        <img size="64"   class="dropdown-button" href="#!" data-activates="dropdown%mid%" src="/ava/%sender.uid%.jpg"
+        <img size="64"   class="dropdown-button" href="#!" data-activates="dropdown%mid%" src="/utils/ava/%sender.uid%.jpg"
              class="avatar"
              style="color: rgb(255, 255, 255); background-color: rgb(255, 255, 255); user-select: none; display: inline-flex; align-items: center; justify-content: center; font-size: 32px; border-radius: 50%; height: 64px; width: 64px;">
         <ul id="dropdown%mid%" class="dropdown-content" style="position:fixed;">

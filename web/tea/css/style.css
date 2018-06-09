@@ -132,7 +132,7 @@ transform: translateY(-100%); /* Firefox 16+, IE 10+, Opera */
 /* JavaScript Turned Off */
 
 .no-js #loader-wrapper { display: none; }
-.progress { background-color: rgba(255, 64, 129, 0.22); }
+.progress { background-color: rgba(216, 216, 216, 0.22); }
 /*=================================================================================
     Header
 ====================================================================================*/
@@ -261,7 +261,7 @@ h5.breadcrumbs-header { font-size: 1.64rem; line-height: 1.804rem; margin: 1.5re
   filter: progid: DXImageTransform.Microsoft.BasicImage(rotation=3);
 /* Internet Explorer */
 }
-#flight-card .card-content-bg { background: url(img/sample-1.jpg) no-repeat center center; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; }
+#flight-card .card-content-bg { background: url(img/course.jpg) no-repeat center center; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; }
 #flight-card .card-content { background: rgba(0, 0, 0, 0.25); }
 #flight-card .flight-state-wrapper { margin: 0 0 100px 0 !important; }
 /*task-card*/

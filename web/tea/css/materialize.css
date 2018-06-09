@@ -1634,7 +1634,7 @@
 /*** Toasts ***/
 /*** Typography ***/
 /*** Collections ***/
-/* Progress Bar */
+/* progressX Bar */
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 /**
  * 1. Set default font family to sans-serif.
@@ -1680,11 +1680,11 @@ summary {
 
 /**
  * 1. Correct `inline-block` display not defined in IE 8/9.
- * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
+ * 2. Normalize vertical alignment of `progressX` in Chrome, Firefox, and Opera.
  */
 audio,
 canvas,
-progress,
+progressX,
 video {
   display: inline-block;
   /* 1 */
@@ -2384,7 +2384,7 @@ span.badge {
     width: 100%;
     height: 100%; }
 
-.progress {
+.progressX {
   position: relative;
   height: 4px;
   display: block;
@@ -2393,7 +2393,7 @@ span.badge {
   border-radius: 2px;
   margin: 0.5rem 0 1rem 0;
   overflow: hidden; }
-  .progress .determinate {
+  .progressX .determinate {
     position: absolute;
     background-color: inherit;
     top: 0;
@@ -2405,9 +2405,9 @@ span.badge {
     -o-transition: width 0.3s linear;
     -ms-transition: width 0.3s linear;
     transition: width 0.3s linear; }
-  .progress .indeterminate {
+  .progressX .indeterminate {
     background-color: #ff4081; }
-    .progress .indeterminate:before {
+    .progressX .indeterminate:before {
       content: '';
       position: absolute;
       background-color: inherit;
@@ -2420,7 +2420,7 @@ span.badge {
       -ms-animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
       -o-animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
       animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite; }
-    .progress .indeterminate:after {
+    .progressX .indeterminate:after {
       content: '';
       position: absolute;
       background-color: inherit;
@@ -2501,7 +2501,9 @@ span.badge {
     right: -8%; } }
 /*******************
   Utility Classes
+
 *******************/
+
 .hide {
   display: none !important; }
 
@@ -8228,6 +8230,90 @@ select {
 /* ==========================================================================
    CUSTOM MATERIALIZE STYLES
    ========================================================================== */
+
+.chip {
+  display: inline-block;
+  height: 32px;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.6);
+  line-height: 32px;
+  padding: 0 12px;
+  border-radius: 16px;
+  background-color: #e4e4e4;
+  margin-bottom: 5px;
+  margin-right: 5px;
+}
+
+.chip img {
+  float: left;
+  margin: 0 8px 0 -12px;
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+}
+
+.chip .close {
+  cursor: pointer;
+  float: right;
+  font-size: 16px;
+  line-height: 32px;
+  padding-left: 8px;
+}
+
+.chips {
+  border: none;
+  border-bottom: 1px solid #9e9e9e;
+  box-shadow: none;
+  margin: 0 0 20px 0;
+  min-height: 45px;
+  outline: none;
+  transition: all .3s;
+}
+
+.chips.focus {
+  border-bottom: 1px solid #26a69a;
+  box-shadow: 0 1px 0 0 #26a69a;
+}
+
+.chips:hover {
+  cursor: text;
+}
+
+.chips .chip.selected {
+  background-color: #26a69a;
+  color: #fff;
+}
+
+.chips .input {
+  background: none;
+  border: 0;
+  color: rgba(0, 0, 0, 0.6);
+  display: inline-block;
+  font-size: 1rem;
+  height: 3rem;
+  line-height: 32px;
+  outline: 0;
+  margin: 0;
+  padding: 0 !important;
+  width: 120px !important;
+}
+
+.chips .input:focus {
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.prefix ~ .chips {
+  margin-left: 3rem;
+  width: 92%;
+  width: calc(100% - 3rem);
+}
+
+.chips:empty ~ label {
+  font-size: 0.8rem;
+  -webkit-transform: translateY(-140%);
+}
 .picker__box {
   border-radius: 2px;
   overflow: hidden; }

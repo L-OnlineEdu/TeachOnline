@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="description" content="Materialize is a Material Design Admin Template,It's modern, responsive and based on Material Design by Google. ">
+    <meta name="keywords" content="materialize, admin template, dashboard template, flat admin template, responsive admin template,">
+    <title>Materialize - Material Design Admin Template</title>
+
+    <!-- Favicons-->
+    <link rel="icon" href="images/favicon/favicon-32x32.png" sizes="32x32">
+    <!-- Favicons-->
+    <link rel="apple-touch-icon-precomposed" href="images/favicon/apple-touch-icon-152x152.png">
+    <!-- For iPhone -->
+    <meta name="msapplication-TileColor" content="#00bcd4">
+    <meta name="msapplication-TileImage" content="images/favicon/mstile-144x144.png">
+    <!-- For Windows Phone -->
+
+
+    <!-- CORE CSS-->
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
+
+
+    <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
+    <link href="css/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="css/jquery-jvectormap.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="css/chartist.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+
+
+</head>
+
+<body>
+
+
+    <!-- //////////////////////////////////////////////////////////////////////////// -->
+
+    <!-- START HEADER -->
+    <header id="header" class="page-topbar">
+        <!-- start header nav-->
+        <div class="navbar-fixed">
+            <nav class="cyan">
+                <div class="nav-wrapper">
+                    <h1 class="logo-wrapper">
+                        <a href="ssqn.html" class="brand-logo darken-1">
+                            <img src="img/materialize-logo.png" alt="materialize logo">
+                        </a>
+                        <span class="logo-text">Materialize</span>
+                    </h1>
+                    <ul class="right hide-on-med-and-down">
+
+                        <li>
+                            <a href="javascript:void(0);" class="waves-effect waves-block waves-light">
+                                <i class="mdi-maps-local-library" style="margin-top:-7px;margin-bottom:-14px"></i>
+                                <label style="display: block; text-align: center; font-size: 10px; line-height: 14px; cursor: pointer; color:#FFF;">我的课堂</label>
+                            </a>
+
+                        </li>
+
+                        <li>
+                            <a href="javascript:void(0);" class="waves-effect waves-block waves-light">
+                                <i class="mdi-social-poll" style="margin-top:-7px;margin-bottom:-14px"></i>
+                                <label style="display: block; text-align: center; font-size: 10px; line-height: 14px; cursor: pointer; color:#FFF;">我的题库</label>
+                            </a>
+
+                        </li>
+                        <li>
+                            <a class="modal-trigger waves-effect waves-block waves-light" href="#modal1">评教</a>
+                        </li>
+                        <li>
+                            <div class="row" style="width:150px;margin-bottom:-10px;">
+                                <div class="col col s4 m4 l4" style="padding-top:10px;">
+                                    <img src="img/avatar.jpg" alt="" class="circle responsive-img valign ">
+                                </div>
+                                <div class="col col s1 m1 l1" style="margin-left:-20px;">
+                                    <ul id="profile-dropdown" class="dropdown-content" style="width:20px;">
+                                        <li>
+                                            <a href="#">
+                                                <i class="mdi-action-face-unlock"></i> Profile</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="mdi-action-settings"></i> Settings</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="mdi-communication-live-help"></i> Help</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="mdi-action-lock-outline"></i> Lock</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="mdi-hardware-keyboard-tab"></i> Logout</a>
+                                        </li>
+                                    </ul>
+
+                                    <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn" style="width:200px;" href="#" data-activates="profile-dropdown">
+                                        John ▼
+                                    </a>
+
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </nav>
+        </div>
+        <!-- end header nav-->
+    </header>
+
+
+
+    <!-- END HEADER -->
+
+    <!-- //////////////////////////////////////////////////////////////////////////// -->
+
+    <!-- START MAIN -->
+
+    <!-- Modal Trigger -->
+
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal modal-fixed-footer" style="height:250px">
+        <div class="modal-content">
+            <h4>评教选择</h4>
+            <iframe id="ifm" src="index.jsp" style="border: #FFFFFF; height: 100px"></iframe>
+        </div>
+
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat " id="a1">关闭</a>
+            <a href="#!" class=" waves-effect waves-green btn-flat " onclick="sendM()">确定</a>
+        </div>
+    </div>
+
+
+
+    <!-- END MAIN -->
+
+
+
+    <!-- //////////////////////////////////////////////////////////////////////////// -->
+
+    <!-- START FOOTER -->
+
+    <!-- END FOOTER -->
+
+
+    <!-- ================================================
+    Scripts
+    ================================================ -->
+
+
+
+    <!-- jQuery Library -->
+    <script src="js/jquery-1.10.2.js"></script>
+    <!--materialize js-->
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <!--scrollbar-->
+    <script type="text/javascript" src="js/perfect-scrollbar.min.js"></script>
+    <!-- chartist -->
+    <script type="text/javascript" src="js/chartist.min.js"></script>
+    <!-- sparkline -->
+    <script type="text/javascript" src="js/jquery.sparkline.min.js"></script>
+    <script type="text/javascript" src="js/sparkline-script.js"></script>
+    <!--jvectormap-->
+    <script type="text/javascript" src="js/jquery-jvectormap-1.2.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery-jvectormap-world-mill-en.js"></script>
+    <script type="text/javascript" src="js/vectormap-script.js"></script>
+    <!--plugins.js - Some Specific JS codes for Plugin Settings-->
+    <script type="text/javascript" src="js/plugins.js"></script>
+    <!-- Toast Notification -->
+    <script type="text/javascript">
+        // Toast Notification
+    </script>
+    <script type="text/javascript" src="js/Paper.js"></script>
+</body>
+
+</html>

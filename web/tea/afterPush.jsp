@@ -23,8 +23,8 @@
 
 
     <!-- CORE CSS-->
-    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
-    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="/utils/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="/utils/css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
 
 
 </head>
@@ -41,16 +41,11 @@
     <div class="navbar-fixed">
         <nav class="cyan">
             <div class="nav-wrapper">
-                <h1 class="logo-wrapper">
-                    <a href="index.html" class="brand-logo darken-1">
-                        <img src="img/materialize-logo.png" alt="materialize logo">
-                    </a>
-                    <span class="logo-text">Materialize</span>
-                </h1>
+                <h1 class="logo-wrapper"><a href="/tea/home.jsp" class="brand-logo darken-1"><img src="/utils/img/materialize-logo.png" alt="materialize logo"></a> <span class="logo-text">Materialize</span></h1>
                 <ul class="right hide-on-med-and-down">
 
                     <li>
-                        <a href="javascript:void(0);" class="waves-effect waves-block waves-light">
+                        <a href="/tea/home.jsp" class="waves-effect waves-block waves-light">
                             <i class="mdi-maps-local-library" style="margin-top:-7px;margin-bottom:-14px"></i>
                             <label style="display: block; text-align: center; font-size: 10px; line-height: 14px; cursor: pointer; color:#FFF;">我的课堂</label>
                         </a>
@@ -58,44 +53,26 @@
                     </li>
 
                     <li>
-                        <a href="javascript:void(0);" class="waves-effect waves-block waves-light">
+                        <a href="/tea/pushpaper.jsp" class="waves-effect waves-block waves-light">
                             <i class="mdi-social-poll" style="margin-top:-7px;margin-bottom:-14px"></i>
                             <label style="display: block; text-align: center; font-size: 10px; line-height: 14px; cursor: pointer; color:#FFF;">我的题库</label>
                         </a>
 
                     </li>
                     <li>
-                        <div class="row" style="width:150px;margin-bottom:-10px;">
+                        <div class="row" style="width:150px;margin-bottom:-10px;" >
                             <div class="col col s4 m4 l4" style="padding-top:10px;">
-                                <img src="img/avatar.jpg" alt="" class="circle responsive-img valign ">
+                                <img src="/utils/ava/${user.uid}.jpg" alt="" class="circle responsive-img valign ">
                             </div>
                             <div class="col col s1 m1 l1" style="margin-left:-20px;">
                                 <ul id="profile-dropdown" class="dropdown-content" style="width:20px;">
-                                    <li>
-                                        <a href="#">
-                                            <i class="mdi-action-face-unlock"></i> Profile</a>
+                                    <li><a href="/login">退出</a>
                                     </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="mdi-action-settings"></i> Settings</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="mdi-communication-live-help"></i> Help</a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="mdi-action-lock-outline"></i> Lock</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="mdi-hardware-keyboard-tab"></i> Logout</a>
-                                    </li>
+
                                 </ul>
 
-                                <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn" style="width:200px;" href="#" data-activates="profile-dropdown">
-                                    John ▼
+                                <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn" style="width:200px;"  href="#" data-activates="profile-dropdown">
+                                    ${user.userName} ▼
                                 </a>
 
                             </div>
@@ -116,81 +93,24 @@
 
 
         <div class="right-area">
-            <div class="right-area-scroll ">
+            <div class="right-area-scroll "style="height: 250px">
 
-                <div class="question-wrap card">
+                <div class="question-wrap card" style="height: 200px">
                     <div class="question-content">
                         <span class="open-state teal btn-arc">开启中</span>
                         <div class="question-cont">
                             <span class="question-type tip-badge  green-badge white-text">试卷一正在推送</span>
                             <p class="test_time">
-                                <b class="alt-1">${examtime}</b>
+                                <b class="alt-1" style="font-size: 60px;margin-top: 25px">${examtime}</b>
                             </p>
                         </div>
-                        <div class="buttons btns-close ">
-                            <a class="edit teal-text btn-edit btn-edit-question">编辑</a>
-                            <a class="edit teal-text btn-edit btn-copy-question">克隆</a>
-                            <a class="edit teal-text btn-edit btn-del-question">删除</a>
-                            <div class="pull-right">
-
-                                <div class="inline-block teal-text time-limit mr-20">
-                                    <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked">
-                                    <label for="filled-in-box" class="btn-time-limit"></label>
-                                    <span class="inline-block time-limit-info">限时</span>
-                                </div>
-                                <a class="btn-open waves-effect waves-light btn teal">重新开启题目</a>
-                            </div>
-                        </div>
-                           </div>
-                    <div class="answer-content">
-                        答案：C
                     </div>
-                    <div class="card white answer-info mt-20">
-                        <div class="right-list">
-                            <h3 class="right-list-title">答题概况</h3>
-
-                            <div class="inline-block switch pull-right">
-                                <label class="teal-text switch-answer-wrapper font-14">
-                                    <input type="checkbox" class="switch-answer" checked="">
-                                    <span class="lever"></span>公布答案
-                                </label>
-                            </div>
-
-                            <div class="inline-block switch pull-right">
-                                <label>
-                                    <input type="checkbox" class="switch-group" name="group">
-                                    <span class="lever"></span>
-                                    按分组显示
-                                </label>
-                            </div>
-                            <div class="clearfix"></div>
-                            <div class="green-line"></div>
-                            <div class="group-chart-container">
-                                <div style="position:relative;">
-                                    <canvas id="canvas_1" width="150" height="390" style="width: 100px; height: 260px;"></canvas>
-                                    <div class="g2-tooltip" style="position: absolute; visibility: hidden; white-space: nowrap; z-index: 999; transition: visibility 0.2s cubic-bezier(0.23, 1, 0.32, 1), left 0.4s cubic-bezier(0.23, 1, 0.32, 1), top 0.4s cubic-bezier(0.23, 1, 0.32, 1); background-color: rgba(0, 0, 0, 0.65); border-radius: 4px; color: rgb(255, 255, 255); font-size: 12px; font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif; line-height: 20px; padding: 10px 10px 6px;">
-                                        <div class="g2-tooltip-title"></div>
-                                        <ul class="g2-tooltip-list"></ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="right-list-content">
-                                <h3 class="right-list-title">
-                                    正确人员名单 （
-                                    <span class="right-count">0</span>/
-                                    <span class="answer-count">2</span>）
-                                </h3>
-                                <div class="green-line"></div>
-                                <ul class="top-list">
-                                </ul>
-                                <div class="rest-list">
-                                </div>
-                            </div>
-                        </div>
 
 
 
-                    </div>
+
+
+
                     <div class="clock-container hidden">
                         <div class="wave4 wave"></div>
                         <div class="wave3 wave"></div>
@@ -222,6 +142,15 @@
                 </div>
                 <div id="finish-tip"></div>
             </div>
+
+                <ul id="task-card" class="collection with-header scoress">
+                    <li class="collection-header cyan">
+                        <h4 class="task-card-title">成绩列表</h4>
+                    </li>
+
+
+                </ul>
+
         </div>
     </div>
 </div>
@@ -5294,12 +5223,13 @@
     </style>
 
     <!-- jQuery Library -->
-    <script src="js/jquery-1.11.2.min.js"></script>
+    <script src="/utils/js/jquery-1.11.2.min.js"></script>
 
     <!--materialize js-->
-    <script type="text/javascript" src="js/materialize.min.js"></script>
-    <script src="time/jquery.countdown.js"></script>
+    <script type="text/javascript" src="/utils/js/materialize.min.js"></script>
+    <script src="/utils/time/jquery.countdown.js"></script>
 
+    <script src="jxv4.js"></script>
 <script>
     window.jQuery(function($) {
         "use strict";
@@ -5317,7 +5247,7 @@
     });
 </script>
     <!--plugins.js - Some Specific JS codes for Plugin Settings-->
-    <script type="text/javascript" src="js/plugins.js"></script>
+    <script type="text/javascript" src="/utils/js/plugins.js"></script>
     <!-- Toast Notification -->
     <style>
         .test_time{color:green; line-height:45px;}

@@ -21,9 +21,9 @@
 
 
     <!-- CORE CSS-->
-    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
-    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
-
+    <link href="/utils/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="/utils/css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link rel="stylesheet" type="text/css" href="/utils/swx/sweetalert.css">
 
 </head>
 
@@ -39,11 +39,11 @@
     <div class="navbar-fixed">
         <nav class="cyan">
             <div class="nav-wrapper">
-                <h1 class="logo-wrapper"><a href="index.html" class="brand-logo darken-1"><img src="img/materialize-logo.png" alt="materialize logo"></a> <span class="logo-text">Materialize</span></h1>
+                <h1 class="logo-wrapper"><a href="/tea/home.jsp" class="brand-logo darken-1"><img src="/utils/img/materialize-logo.png" alt="materialize logo"></a> <span class="logo-text">Materialize</span></h1>
                 <ul class="right hide-on-med-and-down">
 
                     <li>
-                        <a href="javascript:void(0);" class="waves-effect waves-block waves-light">
+                        <a href="/tea/home.jsp" class="waves-effect waves-block waves-light">
                             <i class="mdi-maps-local-library" style="margin-top:-7px;margin-bottom:-14px"></i>
                             <label style="display: block; text-align: center; font-size: 10px; line-height: 14px; cursor: pointer; color:#FFF;">我的课堂</label>
                         </a>
@@ -51,7 +51,7 @@
                     </li>
 
                     <li>
-                        <a href="javascript:void(0);" class="waves-effect waves-block waves-light">
+                        <a href="/tea/pushpaper.jsp" class="waves-effect waves-block waves-light">
                             <i class="mdi-social-poll" style="margin-top:-7px;margin-bottom:-14px"></i>
                             <label style="display: block; text-align: center; font-size: 10px; line-height: 14px; cursor: pointer; color:#FFF;">我的题库</label>
                         </a>
@@ -60,25 +60,17 @@
                     <li>
                         <div class="row" style="width:150px;margin-bottom:-10px;" >
                             <div class="col col s4 m4 l4" style="padding-top:10px;">
-                                <img src="img/teacher.jpg" alt="" class="circle responsive-img valign ">
+                                <img src="/utils/ava/${user.uid}.jpg" alt="" class="circle responsive-img valign ">
                             </div>
                             <div class="col col s1 m1 l1" style="margin-left:-20px;">
                                 <ul id="profile-dropdown" class="dropdown-content" style="width:20px;">
-                                    <li><a href="#"><i class="mdi-action-face-unlock"></i> Profile</a>
+                                    <li><a href="/login">退出</a>
                                     </li>
-                                    <li><a href="#"><i class="mdi-action-settings"></i> Settings</a>
-                                    </li>
-                                    <li><a href="#"><i class="mdi-communication-live-help"></i> Help</a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li><a href="#"><i class="mdi-action-lock-outline"></i> Lock</a>
-                                    </li>
-                                    <li><a href="#"><i class="mdi-hardware-keyboard-tab"></i> Logout</a>
-                                    </li>
+
                                 </ul>
 
                                 <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn" style="width:200px;"  href="#" data-activates="profile-dropdown">
-                                    John ▼
+                                    ${user.userName} ▼
                                 </a>
 
                             </div>
@@ -99,7 +91,7 @@
     <!-- 页面内容放在这里 -->
     <div class="info-wapper">
         <div class="h-wapper">
-            <img size="40" src="img/teacher.jpg" style="color: rgb(255, 255, 255); background-color: rgb(188, 188, 188); user-select: none; display: inline-flex; align-items: center; justify-content: center; font-size: 20px; border-radius: 100%; height: 75px; width: 75px; position: absolute; left: 50%; bottom: -12px; margin-left: -37.5px; z-index: 1;">
+            <img size="40" src="/utils/ava/${user.uid}.jpg" style="color: rgb(255, 255, 255); background-color: rgb(188, 188, 188); user-select: none; display: inline-flex; align-items: center; justify-content: center; font-size: 20px; border-radius: 100%; height: 75px; width: 75px; position: absolute; left: 50%; bottom: -12px; margin-left: -37.5px; z-index: 1;">
 
         </div>
         <div class="techer-info-wapper">
@@ -138,17 +130,17 @@
         <div class="add-private-classroom">
             <div class="add-private-panels">
                 <div class="add-panel" name="pravite" style="margin: 0px 20px 20px 0px; float: left;"><div>
-                    <i class="mdi-content-add-circle" style="color: rgb(156, 156, 156); font-size: 48px;"></i>
+                    <i id="addCourse" class="mdi-content-add-circle" style="color: rgb(156, 156, 156); font-size: 48px;"></i>
                     <p>添加课堂</p></div></div><div style="margin: 0px 20px 20px 0px; float: left;">
                 <div class="classroom-card"><div class="open-num-warpper">
                     <span><!-- react-text: 124 -->本课堂有 <!-- /react-text --><!-- react-text: 125 -->1<!-- /react-text --><!-- react-text: 126 --> 题正在开启中<!-- /react-text --></span><a class="close-btn">全部关闭</a></div>
-                    <a class="classroom-card" href="/tea/two.html">
-                        <img class="classroom-image" src="img/default-class.png" alt="classroom">
+                    <a class="classroom-card" href="/tea/two.jsp">
+                        <img class="classroom-image" src="/utils/img/default-class.png" alt="classroom">
                         <div class="classroom-status">
                             <div class="classroom-title">
                                 <div class="" data-tooltipped="" aria-describedby="tippy-tooltip-1" data-original-title="吃饭" style="display: inline;">
                                     <div class="classroom-name">吃饭</div>
-                                </div>
+           yo                     </div>
                             </div>
                             <div class="classroom-info">
                                 <span class="classroom-season"><!-- react-text: 137 -->2018<!-- /react-text --><!-- react-text: 138 -->学年·<!-- /react-text --><!-- react-text: 139 -->春<!-- /react-text --></span><!-- react-text: 140 --><!-- /react-text --></div>
@@ -164,6 +156,9 @@
             </div>
         </div>
     </div>
+    <form action="/tea/beginCourse" id="addCou" method="post">
+        <input type="hidden" name="courseName" id="couName">
+    </form>
 </div>
 
 <!-- END HEADER -->
@@ -188,18 +183,40 @@ Scripts
 ================================================ -->
 
 <!-- jQuery Library -->
-<script src="js/jquery-1.11.2.min.js"></script>
+<script src="/utils/js/jquery-1.11.2.min.js"></script>
+<script src="/utils/swx/sweetalert-dev.js"></script>
 <!--materialize js-->
-<script type="text/javascript" src="js/materialize.min.js"></script>
-<!--scrollbar-->
+<script type="text/javascript" src="/utils/js/materialize.min.js"></script>
 <script type="text/javascript" src="js/perfect-scrollbar.min.js"></script>
 
 
 <!--plugins.js - Some Specific JS codes for Plugin Settings-->
-<script type="text/javascript" src="js/plugins.js"></script>
+<script type="text/javascript" src="/utils/js/plugins.js"></script>
 <!-- Toast Notification -->
 <script type="text/javascript">
-    // Toast Notification
+    $("#addCourse").click(function(){
+        swal({
+                title: "开课",
+                text: "输入本节课程名称",
+                type: "input",
+                showCancelButton: true,
+                closeOnConfirm: false,
+                closeOnCancel:true,
+                animation: "slide-from-top",
+                inputPlaceholder: "输入课程名称"
+            },
+            function(inputValue){
+                if (inputValue === false) return false;
+
+                if (inputValue === "") {
+                    swal.showInputError("请输入课程名称！");
+                    return false
+                }
+
+                $("#couName").val(inputValue)
+                $("#addCou").submit()
+            });
+    })
 </script>
 <style>
     #profile-dropdown li a{

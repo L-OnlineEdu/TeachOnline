@@ -29,6 +29,7 @@ String.prototype.answer = function(obj) {
 function checkx(th,right) {
     var r=$(".qright")
     var w=$(".qwrong")
+    var ps=$("#prescores")
     rightnum=parseInt(r.html())
     wrongnum=parseInt(w.html())
     nx=$(th).attr('name')
@@ -39,6 +40,7 @@ function checkx(th,right) {
 
         $("#dtk"+nx.substr(2)).css("background","green")
         r.html(rightnum+1)
+        ps.html(r.html())
     }else {
         $("#dtk"+nx.substr(2)).css("background","red")
         $("#ans"+nx.substr(2)).show()
@@ -126,17 +128,110 @@ function getTh() {
         return false;
     }
 }
+
+
 function answers() {
-    map={}
-    $(".radioOrCheck:checked").each(function(){
-        console.info($(this).val());
-        var ans=$(this).val();
-        questionNo=$(this).val().match(/\d+/)
-        choice=$(this).val().match(/[A-Da-d]/)
-        map[questionNo]=choice.toString();
+    swal({
+            title: "确定交卷？",
+            text: "交卷后将结束本次测验！",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "确定交卷",
+            cancelButtonText: "再做会",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+        function(isConfirm){
+            var ps=$("#prescores").text()
+            if (isConfirm) {
+                map={}
+                $(".radioOrCheck:checked").each(function(){
+                    console.info($(this).val());
+                    var ans=$(this).val();
+                    questionNo=$(this).val().match(/\d+/)
+                    choice=$(this).val().match(/[A-Da-d]/)
+                    map[questionNo]=choice.toString();
+                })
+                $("#answers").val(JSON.stringify(map))
+                $.ajax({
+                    //几个参数需要注意一下
+                    type: "POST",//方法类型
+                    dataType: "json",//预期服务器返回的数据类型
+                    url: "correctpaper" ,//url
+                    data: $('#submitForm').serialize(),
+                    success: function (result) {
+                        swal({
+                                title: "提交成功",
+                                text: "本次测验成绩："+result.scores+"分",
+                                type: "success",
+                                confirmButtonText: "OK",
+                                closeOnConfirm: true,
+                            },
+                            function(isConfirm){
+                                window.location="/stu/stuhome.jsp"
+                            })
+                    },
+                    error : function() {
+                        alert("异常！");
+                    }
+                });
+            } else {
+                swal("取消", "继续答题",
+                    "error");
+            }
+        });
+}
 
-
-    })
-    console.info(JSON.stringify(map))
-
+function ti_jiao() {
+    swal({
+            title: "提交练习？",
+            text: "确定提交本次练习？",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "确定",
+            cancelButtonText: "再做会",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+        function(isConfirm){
+            var ps=$("#prescores").text()
+            if (isConfirm) {
+                map={}
+                $(".radioOrCheck:checked").each(function(){
+                    console.info($(this).val());
+                    var ans=$(this).val();
+                    questionNo=$(this).val().match(/\d+/)
+                    choice=$(this).val().match(/[A-Da-d]/)
+                    map[questionNo]=choice.toString();
+                })
+                $("#answers").val(JSON.stringify(map))
+                $.ajax({
+                    //几个参数需要注意一下
+                    type: "POST",//方法类型
+                    dataType: "json",//预期服务器返回的数据类型
+                    url: "correctPractice" ,//url
+                    data: $('#submitForm').serialize(),
+                    success: function (result) {
+                        swal({
+                                title: "提交成功",
+                                text: "本次测验成绩："+result.scores+"分",
+                                type: "success",
+                                confirmButtonText: "OK",
+                                closeOnConfirm: true,
+                            },
+                            function(isConfirm){
+                                window.location="/stu/stuhome.jsp"
+                            })
+                    },
+                    error : function() {
+                        alert("异常！");
+                    }
+                });
+            } else {
+                swal("取消", "继续答题",
+                    "error");
+            }
+        });
 }

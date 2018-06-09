@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <constant name="struts.action.excludePattern" value="/ws/.*,ws://.*,/longpolling"></constant>
+    <package name="fileup" extends="struts-default" namespace="/tea">
+        <action name="FileUp" class="com.action.UploadAction">
+            <param name="savePath">/upload</param><!-- 使用配置文件对Action进行传参 -->
+            <result name="success">pushpaper.jsp</result>
+            <!-- 通过拦截器进行文件上传的限制 -->
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <interceptor-ref name="fileUpload">
+                <param name="maximumSize">1024000</param>
+            </interceptor-ref>
+        </action>
+    </package>
+</struts>

@@ -2,60 +2,115 @@ package com.tools;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Repository;
-
-import javax.annotation.Resource;
+import org.hibernate.service.ServiceRegistry;
 
 @Repository
 public class DBHelper {
-    @Resource
-    private static  SessionFactory sessionFactory;
+    /**
+     * Location of hibernate.cfg.xml file.
+     * Location should be on the classpath as Hibernate uses
+     * #resourceAsStream style lookup for its configuration file.
+     * The default classpath location of the hibernate config file is
+     * in the default package. Use #setConfigFile() to update
+     * the location of the configuration file for the current session.
+     */
+    private static final ThreadLocal<Session> threadLocal = new ThreadLocal<Session>();
+    private static org.hibernate.SessionFactory sessionFactory;
+
+    private static Configuration configuration = new Configuration();
+    private static ServiceRegistry serviceRegistry;
 
     static {
         try {
-            Configuration configuration = new Configuration();
             configuration.configure();
-
-            sessionFactory= configuration.buildSessionFactory();
-        } catch (Throwable ex) {
-            throw new ExceptionInInitializerError(ex);
+            serviceRegistry = new StandardServiceRegistryBuilder().configure().build();
+            try {
+                sessionFactory = new MetadataSources(serviceRegistry).buildMetadata().buildSessionFactory();
+            } catch (Exception e) {
+                StandardServiceRegistryBuilder.destroy(serviceRegistry);
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            System.err.println("%%%% Error Creating SessionFactory %%%%");
+            e.printStackTrace();
         }
     }
-/*
+    private DBHelper() {
+    }
+
+    /**
+     * Returns the ThreadLocal Session instance.  Lazy initialize
+     * the <code>SessionFactory</code> if needed.
+     *
+     *  @return Session
+     *  @throws HibernateException
+     */
     public static Session getSession() throws HibernateException {
-        return sessionFactory.openSession();
-    }
+        Session session = (Session) threadLocal.get();
 
-    */
-
-    // ThreadLocal可以隔离多个线程的数据共享，因此不再需要对线程同步
-    public static final ThreadLocal<Session> session
-            = new ThreadLocal<Session>();
-    //创建Session
-    public static Session currentSession()
-            throws HibernateException
-    {
-        //通过线程对象.get()方法安全创建Session
-        Session s = session.get();
-        // 如果该线程还没有Session,则创建一个新的Session
-        if (s == null)
-        {
-            s = sessionFactory.openSession();
-            // 将获得的Session变量存储在ThreadLocal变量session里
-            session.set(s);
+        if (session == null || !session.isOpen()) {
+            if (sessionFactory == null) {
+                rebuildSessionFactory();
+            }
+            session = (sessionFactory != null) ? sessionFactory.openSession()
+                    : null;
+            threadLocal.set(session);
         }
-        return s;
+
+        return session;
     }
-    //关闭Session
-    public static void closeSession()
-            throws HibernateException
-    {
-        Session s = session.get();
-        if (s != null)
-            s.close();
-        session.set(null);
+
+    /**
+     *  Rebuild hibernate session factory
+     *
+     */
+    public static void rebuildSessionFactory() {
+        try {
+            configuration.configure();
+            serviceRegistry = new StandardServiceRegistryBuilder().configure().build();
+            try {
+                sessionFactory = new MetadataSources(serviceRegistry).buildMetadata().buildSessionFactory();
+            } catch (Exception e) {
+                StandardServiceRegistryBuilder.destroy(serviceRegistry);
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            System.err.println("%%%% Error Creating SessionFactory %%%%");
+            e.printStackTrace();
+        }
     }
+
+    /**
+     *  Close the single hibernate session instance.
+     *
+     *  @throws HibernateException
+     */
+    public static void closeSession() throws HibernateException {
+        Session session = (Session) threadLocal.get();
+        threadLocal.set(null);
+
+        if (session != null) {
+            session.close();
+        }
+    }
+
+    /**
+     *  return session factory
+     *
+     */
+    public static org.hibernate.SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+    /**
+     *  return hibernate configuration
+     *
+     */
+    public static Configuration getConfiguration() {
+        return configuration;
+    }
+
 }

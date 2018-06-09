@@ -7,7 +7,9 @@ import java.util.List;
 public class Paper {
     private int pid;
     private String pname;
-    private List<Question> questions;
+    private String pcontext;
+    private String ptime;
+    private  List<Question> questions;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,5 +39,21 @@ public class Paper {
 
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
+    }
+    @Column(name="pcontext")
+    public String getPcontext() {
+        return pcontext;
+    }
+
+    public void setPcontext(String pcontext) {
+        this.pcontext = pcontext;
+    }
+    @Column(name="ptime")
+    public String getPtime() {
+        return ptime;
+    }
+
+    public void setPtime(String ptime) {
+        this.ptime = ptime;
     }
 }

@@ -4,6 +4,7 @@ package com.msg.webSocket;
 import com.dao.Dao;
 import com.google.gson.Gson;
 import com.pojo.Message;
+import com.pojo.SystemMessage;
 import com.pojo.User;
 import com.tool.TemporalMsgs;
 import com.tool.Utils;
@@ -63,10 +64,10 @@ public class Push {
          u= (User) httpSession.getAttribute(Utils.USER_KEY);
         if (u!=null){
          int uid=u.getUid();
-        if (userSocketSessionMap.get(uid) == null) {
+        //if (userSocketSessionMap.get(uid) == null) {
             userSocketSessionMap.put(uid,session);
-        }
-
+       // }
+        //获取离线消息
         temporalMsgs= (TemporalMsgs) SpringTool.getBean("temporalMsgs");
             List unreadList=temporalMsgs.readUnSentMessages(uid);
         if (unreadList!=null&&unreadList.size()>0){
@@ -76,6 +77,9 @@ public class Push {
             }
             temporalMsgs.removeMessage(uid);
         }
+            User sysUser=new User();
+            sysUser.setUserName("系统消息");
+            sendMessageToUser(uid,new SystemMessage(SystemMessage.SystemMessageType_ConnectionEstablished,sysUser,0,"succes"));
         }else {
             //未登录
             System.out.println("未登录");
@@ -93,6 +97,8 @@ public class Push {
         if (u!=null){
             if (userSocketSessionMap.containsKey(u.getUid())){
                 userSocketSessionMap.remove(u.getUid());
+                System.out.println("----连接关闭----");
+
             }
         }else {
             System.out.println("未登录，连接关闭");

@@ -17,13 +17,15 @@ String.prototype.temp = function(obj) {
     })
 }
 discussType={"broad":"1","group":"2","person":"3","sys":"4"}  /*课堂讨论 1 */ /*小组讨论 2 */ /* 个人聊天 3 */ /*系统消息 4 */
-systemMType={"askQ":"1","handsUp":"2","paperPush":"3","paperFinish":"4","warn":"5","ansQ":"6","other":"0"}
+systemMType={"askQ":"1","handsUp":"2","paperPush":"3","paperFinish":"4","warn":"5","ansQ":"6","ated":"7","cour":"9",
+    "exit":"10","ques":"11","subAsw":"12","other":"13","pract":"14","conEstablish":"0","JoCour":"15","questionN":"16"}
 currentFilterType="1";
 
 receIdx=0
 myuid=0
 myCharHistory={}
-
+id=""
+cclock="";
 $(function (){
     init()
     //initLongConnnect()
@@ -47,10 +49,14 @@ function init() {
     })
 }
 function initWS() {
-    var webSocket = new WebSocket("ws://localhost:8080/ws/chat");
+    var host=location.origin.split("//")[1].split(":")[0]
+    var webSocket = new WebSocket("ws://"+host+":8080/ws/chat");
     webSocket.onopen = function(event){
         console.log("连接成功");
         console.log(event);
+       cclock=setInterval(function(){
+            initWS();
+        },1*1000)
     };
     webSocket.onerror = function(event){
         console.log("连接失败");
@@ -320,7 +326,11 @@ function jiexi(msgList) {
                     Materialize.toast(sx,5000);
 
                 }
-
+                if(val.message.indexOf("ssqn")!=-1) {
+                    b = val.message.replace("ssqn", "")
+                    alert("根据老师要求，需要你对ID为" + b + "的同学进行评价")
+                    $(location).attr('href', '/qn/question.html?flag=ssqn&&rid=' + b + "&&type=1")
+                }
                  break;
              case discussType.sys:
                  alertMessage(val);
@@ -407,7 +417,28 @@ function saveMsgHistory(msgHTML,cType,rid) {
     keyx="c"+cType+"r"+rid;
     myCharHistory[keyx]=msgHTML;
 }
+$("#couring").click(function(){
+  if(this.text == "点击进入课堂"){
+      teaid = $("#teaid").val()
+      $.ajax({
+          //几个参数需要注意一下
+          type: "POST",//方法类型
+          dataType: "json",//预期服务器返回的数据类型
+          url: "/stu/joinCourse" ,//url
+          data: {"teaId":teaid},
+          success: function (result) {
+              window.location = "/stu/studying.jsp"
+          },
+          error : function() {
+              alert("异常！");
+          }
+      });
+  }
+})
+
 function alertMessage(message) {
+    var details =$("#details")
+    var couring = $("#couring");
     M={}
     //根据消息类型分别提醒
 
@@ -444,7 +475,7 @@ function alertMessage(message) {
                 swal({
                         title: "举手",
                         text: message.sender.userName+"向您举起了手",
-                        imageUrl: "swx/handsup.png",
+                        imageUrl: "/utils/swx/handsup.png",
                         showCancelButton: true,
                         confirmButtonText: "对他提问",
                         cancelButtonText: "忽略",
@@ -460,17 +491,12 @@ function alertMessage(message) {
             case  systemMType.paperPush:
                 //if(cRole=='tea'){return;}
                 m=message.message
-            /*    marr=m.split(":")
-                pid=marr[1]
-                local="stu/takeExam?paperid="+pid*/
-                swal({
-                    title: "自动关闭弹窗！"+m,
-                    text: "5秒后自动关闭。",
-                    timer: 5000,
-                    showConfirmButton: false
-                });
+                marr=m.split(",")
+                paperid=marr[1]
+                extime=marr[3]
 
-               /* if(M.dialog5){
+                local="/stu/takeExam?paperid="+paperid+"&examTime="+extime;
+                if(M.dialog5){
                     return M.dialog5.show();
                 }
                 M.dialog5 = jqueryAlert({
@@ -483,16 +509,123 @@ function alertMessage(message) {
                     'buttons' :{
                         '不去' : function(){
                             M.dialog5.close();
+                            clearInterval(id);
                         },
                         '去看看' : function(){
 
                             window.location.href=local;
                         }
                     }
-                })*/
-
+                })
                 break;
+
+            case systemMType.pract:
+                m=message.message
+                marr=m.split(",")
+                paperid=marr[1]
+                extime=marr[3]
+                local="/stu/takePractice?paperid="+paperid+"&practiceTime="+extime
+                if(M.dialog5){
+                    return M.dialog5.show();
+                }
+                M.dialog5 = jqueryAlert({
+                    'content' : "你有新的练习推送快去看看吧" ,
+                    'modal'   : true,
+                    'contentTextAlign' : 'left',
+                    'width'   : '450px',
+                    'animateType' : 'linear',
+                    'runs':runs(local),
+                    'buttons' :{
+                        '不去' : function(){
+                            M.dialog5.close();
+                            closeModal(id)
+                        },
+                        '好的' : function(){
+                            window.location.href=local;
+                        }
+                    }
+                })
+                break;
+
             case  systemMType.paperFinish:
+               m=message.message
+                score=m.split(":")[1]
+                $(".scoress").append("<li class=\"collection-item dismissable\" style=\"touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\">\n" +
+                    score+"分" +
+                    "<label  style=\"text-decoration: none;\">"+message.sendTime+"<a href=\"#\" class=\"secondary-content\"><span class=\"ultra-small\"><span class=\"task-cat teal\">"+message.sender.userName+"</span></span></a>\n" +
+                    "                        </label>\n" +
+                    "                    </li>")
+                break;
+
+            case systemMType.ques:
+                flag = $("#flag").val();
+                if(flag != "Iamteacher"){
+                    m=message.message
+                    marr=m.split(":")
+                    $.ajax({
+                        url: "/stu/selectQues",
+                        data: {"quesId": marr[1]},
+                        success: function (data) {
+                            $("#quescont").html(data.question.title)
+
+                            arr=[]
+                            al=['A','B','C','D']
+
+                            for(i=0;i<al.length;i++){
+                                xstart=data.question.answers.search(al[i])
+                                xend=-1
+                                if (i+1!=al.length){
+                                    xend=data.question.answers.search(al[i+1])
+                                }
+                                arr[i]=data.question.answers.slice(xstart,xend)
+                            }
+                            $("#sa1").text(arr[0])
+                            $("#sa2").text(arr[1])
+                            $("#sa3").text(arr[2])
+                            $("#sa4").text(arr[3])
+                        }
+                        ,error:function () {
+                            alert("异常")
+                        }
+                    })
+                    $("#modal6").openModal()
+                }
+                break;
+
+            case systemMType.subAsw:
+                subFlag = $("#subFlag").val()
+                if(subFlag == "showResult"){
+                    m=message.message
+                    marr=m.split(":")
+
+                    rateA = (marr[3]/marr[1])*100
+                    rateB = (marr[5]/marr[1])*100
+                    rateC = (marr[7]/marr[1])*100
+                    rateD = (marr[9]/marr[1])*100
+                    rateN = 100 - (rateA+rateB+rateC+rateD)
+                    $(".right_pillar_bg_1").css("height",rateA+"%")
+                    $(".right_pillar_bg_4").css("height",rateB+"%")
+                    $(".right_pillar_bg_6").css("height",rateC+"%")
+                    $(".right_pillar_bg_8").css("height",rateD+"%")
+                    $(".right_pillar_bg_10").css("height",rateN+"%")
+
+                    realRateA = rateA.toString().substring(0,5)
+                    realRateB = rateB.toString().substring(0,5)
+                    realRateC = rateC.toString().substring(0,5)
+                    realRateD = rateD.toString().substring(0,5)
+                    realRateN = rateN.toString().substring(0,5)
+
+                    if(rateA > 0)
+                        $(".right_pillar_bg_1").html(marr[3]+"<br>"+realRateA+"%")
+                    if(rateB > 0)
+                        $(".right_pillar_bg_4").html(marr[5]+"<br>"+realRateB+"%")
+                    if(rateC > 0)
+                        $(".right_pillar_bg_6").html(marr[7]+"<br>"+realRateC+"%")
+                    if(rateD > 0)
+                        $(".right_pillar_bg_8").html(marr[9]+"<br>"+realRateD+"%")
+                    if(rateN > 0)
+                        $(".right_pillar_bg_10").html((marr[1]-marr[3]-marr[5]-marr[7]-marr[9])+"<br>"+realRateN+"%")
+                }
                 break;
 
             case systemMType.warn:
@@ -516,10 +649,83 @@ function alertMessage(message) {
                     });
                 break;
 
-            case  systemMType.other:
+            case  systemMType.JoCour:
+                m=message.message
+                marr=m.split(":")
+
+                $("#showState tr").each(function (){
+                    if(marr[3] == $(this).children().eq(2).text().trim()){
+                        $(this).children().eq(0).html(
+                            "<i style=\"float: left; width: 15px; height: 15px; background-color: rgb(72, 209, 174); margin-right: 3px;\"></i>"
+                        )
+                    }
+                })
                 break;
 
+            case  systemMType.exit:
+                m=message.message
+                marr=m.split(":")
+                $("#showState tr").each(function (){
+                    if(marr[3] == $(this).children().eq(2).text().trim()){
+                        $(this).children().eq(0).html(
+                            "<i style=\"float: left; width: 15px; height: 15px; background-color: rgb(216,216,216); margin-right: 3px;\"></i>"
+                        )
+                    }
+                })
+                break;
+          case systemMType.cour:
+                couring.text("点击进入课堂")
+                couring.css("background-color","#ffd208");
+                m=message.message
+                marr=m.split(":")
+                teaid=marr[1]
+                $("#teaid").val(teaid)
+                break;
+            case systemMType.ated:
+                ateding.text("点击签到")
+                ateding.css("background-color","#ffd208");
+                m=message.message
+                marr=m.split(":")
+                arid=marr[1]
+                $("#arid").val(arid)
+                /*swal({
+                        title: "点名",
+                        text: "请输入您的学号姓名",
+                        type: "input",
+                        showCancelButton: true,
+                        closeOnConfirm: false,
+                        animation: "slide-from-top",
+                        inputPlaceholder: "格式：20XXXX李小明"
+                    },
+                    function(inputValue){
+                        if (inputValue === false) return false;
 
+                        if (inputValue === "") {
+                            swal.showInputError("请先输入您的信息");
+                            return false
+                        }
+
+                        swal("签到成功", "您的信息为：" + inputValue,"success");
+                    });*/
+                break;
+            case systemMType.conEstablish:
+                console.info("conn establash")
+                    clearInterval(cclock);
+                break;
+
+            case systemMType.questionN:
+
+                if(message.message=="tsqn"&&$("#msgflag").val()!="true"){
+                    alert("教师已推送试卷，需要评价")
+                    $(location).attr('href', '/qn/question.html?flag=tsqn&&ruid='+message.sender.uid+'&&type=1')
+
+                }if(message.message.indexOf("ssqn")!=-1&&$("#msgflag").value!="true"){
+                b=val.message.replace("ssqn","")
+                alert("根据老师要求，需要你对ID为"+b+"的同学进行评价")
+                $(location).attr('href', '/qn/question.html?flag=ssqn&&rid='+b+"&&type=1")
+            }
+
+                break;
             default:
                 console.info(message.systemMessageType)
                 break;
@@ -533,7 +739,7 @@ function alertMessage(message) {
 function warnx(x) {
     studentUid=x //$(x).parent().attr("id").substr(4)
 
-    swal({
+   /* swal({
             title: "确定警告该学生吗？",
             text: "此操作无法撤销！",
             type: "warning",
@@ -543,54 +749,49 @@ function warnx(x) {
             closeOnConfirm: false
 
         },
-        function(){
+        function(){*/
             swal({
-                    title: "扣分！",
-                    text: "输入扣多少分：",
-                    type: "input",
-                    showCancelButton:false,
-                    closeOnConfirm: false,
-                    animation: "slide-from-top",
-                    inputPlaceholder: "不扣分填0"
-                },
-                function(inputValue){
-                    if (inputValue === false) return false;
+                title: "请输入警告信息!",
+                text: "扣分数 <input type='text' class='wann' id='apoint'>"
+                +"原因 <input type='text' class='wann'  id='areason'><div id='watip' class=\"sa-error-container\">" +
+                "      <div class=\"icon\">!</div>\n" +
+                "      <p>输入警告信息</p>" +
+                "    </div>",
+                html: true,
+                type: "prompt",
+                closeOnConfirm: false,
+                closeOnCancel:true,
+                showCancelButton: true
 
-                    if (inputValue === "") {
-                        swal.showInputError("你需要输入扣分数！");
-                        return false
-                    }
+            }, function(){
+                points= $("#apoint").val()
+                warnReason=$("#areason").val()
+                tt=/^[0-9]\d*$/
+                if (!tt.test(points)||warnReason==""){
+                    $("#watip").addClass("show")
+                    $(".wann").focus(function () {
+                        $(".sa-error-container").removeClass("show")
+                    })
+                }else {
 
-
-                    /*aaa*/
-
+                    sendWarns(studentUid,points,warnReason)
 
                     swal({
-                            title: "警告原因",
-                            text: "输入警告原因：",
-                            type: "input",
-                            showCancelButton: true,
-                            closeOnConfirm: false,
-                            inputPlaceholder: "输入警告原因"
-                        },
-                        function(warnReason){
-                            if (warnReason=== false) return false;
-
-                            if (warnReason === "") {
-                                swal.showInputError("输入警告原因");
-                                return false
-                            }
-                            sendWarns(studentUid,inputValue,warnReason)
-                            swal("成功", "你的操作已生效" ,"success");
-                        });
-
-                    /*aaa*/
-                    //sendWarns(studentUid,inputValue)
-                    //swal("成功！", "你的操作已生效" ,"success");
-                });
+                        title: "成功",
+                        text: "成功警告该学生",
+                        timer: 800,
+                        type:"success",
+                        showConfirmButton: false
+                    });
+                }
 
 
-        });
+            })
+
+
+
+
+       /* });*/
 }
 function handsupx(x) {
     teacherUid=x//$(x).parent().attr("id").substr(4)
@@ -656,7 +857,13 @@ function sendMessage(sendMsg) {
 
             }else {
                 if (data.msg="success")
-                    swal("成功", "成功发送" ,"success");
+                    swal({
+                        title: "成功",
+                        text: "成功发送",
+                        timer: 800,
+                        type:"success",
+                        showConfirmButton: false
+                    });
                 else
                     swal("错误", "失败" ,"error");
             }
@@ -669,7 +876,13 @@ function sendMessage(sendMsg) {
 }
 function sendPersonMesonage() {
     m=$("#messagex").val();
-    sendMessage(m)
+    if(m==""){
+        $("#messagex").focus()
+        $("#messagex").attr("placeholder","输入消息内容");
+    }else {
+        sendMessage(m)
+    }
+
 
 }
 function askQx(x) {
@@ -692,7 +905,13 @@ function askQx(x) {
                 return false
             }
             sendAskQs(studentUid,inputValue)
-            swal("成功", "已经提出该问题" ,"success");
+            swal({
+                title: "成功",
+                text: "已经成功提出问题",
+                timer: 800,
+                type:"success",
+                showConfirmButton: false
+            });
         });
 }
 //伴随弹框运行
@@ -703,7 +922,7 @@ function runs(ll) {
             i--
             if(i==0){
                 window.location.href=ll;
-                //clearInterval(id);
+                clearInterval(id);
             }
             $(".alert-btn-p")[1].innerHTML="去看看("+i+"s)"
         },1*1000)
@@ -745,7 +964,13 @@ function sendAnsQs(uid,answer) {
         data:{"receverid":uid,"messageDetial":answer},
         success:function (data) {
             if (data.msg="success"){
-                swal("回答成功", "已回答","success");
+                swal({
+                    title: "成功",
+                    text: "回答成功",
+                    timer: 800,
+                    type:"success",
+                    showConfirmButton: false
+                });
             }else {
                 swal("失败", "回答失败:)",
                     "error");
@@ -798,4 +1023,60 @@ function openGroupMessage(groupid){
         console.info("error"+groupid)
     receIdx=groupid;
     turnMessage("g"+groupid)
+}
+function findQnresult(tp){
+    $.ajax({
+        url:"/getQnRs",
+        data:{type:tp},
+        success:function (data) {
+            $.each(data.qn,function (key,val) {
+               if(tp==2){
+                   $("#qn1").append(
+"        <li class=\"collection-item\">\n" +
+                       "                    <div class=\"row\">\n" +
+                       "                        <div class=\"col s6\">\n" +
+                       "                            <p class=\"collections-title\">"+val.result+"</p>\n" +
+                       "                        </div>\n" +
+                       "                        <div class=\"col s3\">\n" +
+                       "                            <span class=\"task-cat cyan\">tea1</span>\n" +
+                       "                        </div>\n" +
+                       "                        <div class=\"col s3\">\n" +
+                       "                            <div class=\"project-line-1\"></div>\n" +
+                       "                        </div>\n" +
+                       "                    </div>\n" +
+                       "                </li>"
+
+                   )
+               }else{
+                   $("#qn2").append(
+                       "        <li class=\"collection-item\">\n" +
+                       "                    <div class=\"row\">\n" +
+                       "                        <div class=\"col s6\">\n" +
+                       "                            <p class=\"collections-title\">"+val.result+"</p>\n" +
+                       "                        </div>\n" +
+                       "                        <div class=\"col s3\">\n" +
+                       "                            <span class=\"task-cat cyan\">匿名</span>\n" +
+                       "                        </div>\n" +
+                       "                        <div class=\"col s3\">\n" +
+                       "                            <div class=\"project-line-1\"></div>\n" +
+                       "                        </div>\n" +
+                       "                    </div>\n" +
+                       "                </li>"
+
+
+)
+
+
+               }
+
+
+
+            })
+        },
+        error:function () {
+            console.info("失败")
+        }
+    })
+
+
 }

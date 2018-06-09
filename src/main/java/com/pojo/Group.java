@@ -1,7 +1,5 @@
 package com.pojo;
 
-import com.google.gson.annotations.Expose;
-
 import javax.persistence.*;
 import java.util.List;
 @Entity
@@ -33,7 +31,7 @@ public class Group {
         this.gname = gname;
     }
 
-    @ManyToMany(targetEntity = User.class)
+    @ManyToMany(targetEntity = User.class,fetch=FetchType.EAGER)
     @JoinTable(name = "gruops_2_users",joinColumns = @JoinColumn(name="gid"),inverseJoinColumns =@JoinColumn(name="uid"))
 
     public List<User> getUsers() {

@@ -1,8 +1,10 @@
 package com.action;
 
 import com.dao.ExamDao;
+import com.dao.PracticeDao;
 import com.opensymphony.xwork2.ActionSupport;
 import com.pojo.Exam;
+import com.pojo.Practice;
 import com.pojo.User;
 import com.tool.Utils;
 import org.apache.struts2.convention.annotation.Action;
@@ -40,6 +42,17 @@ public class JumpAction extends ActionSupport {
         return SUCCESS;
     }
 
+    @Action(value = "/stu/discuss",results = {
+            @Result(name = SUCCESS,location = "/stu/discuss.jsp"),
+            @Result(name = ERROR,type = "redirectAction",location = "login",params = {"namespace","/"})
+    })
+    public String studiscuss(){
+        user=Utils.getUser();
+        if (user==null)
+            return ERROR;
+        return SUCCESS;
+    }
+
     @Action(value = "/tea/paperPushed",results = {
             @Result(name = SUCCESS,location = "/tea/afterPush.jsp"),
             @Result(name = ERROR,type = "redirectAction",location = "login",params = {"namespace","/"})
@@ -50,6 +63,11 @@ public class JumpAction extends ActionSupport {
             return ERROR;
         }else{
             ExamDao dao=new ExamDao();
+            try {
+                Thread.sleep(1000);   //µÈ´ý1Ãë.
+            } catch(InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
             Exam ex=dao.getLastExam();
             if (ex!=null){
                 pid=ex.getPaper().getPid();
@@ -78,7 +96,42 @@ public class JumpAction extends ActionSupport {
         }
     }
 
+    @Action(value = "/tea/practicePushed",results = {
+            @Result(name = SUCCESS,location = "/tea/afterPush.jsp"),
+            @Result(name = ERROR,type = "redirectAction",location = "login",params = {"namespace","/"})
+    })
+    public String afterPushPrac(){
+        user=Utils.getUser();
+        if (user==null){
+            return ERROR;
+        }else{
+            PracticeDao dao=new PracticeDao();
+            Practice practice=dao.getLastPractice();
+            if (practice!=null){
+                pid=practice.getPaper().getPid();
+                pname=practice.getPaper().getPname();
+                if (practice.getStartTimes()!=null&&!practice.getStartTimes().equals("")){
+                    Timestamp startTime=Timestamp.valueOf(practice.getStartTimes());
+                    // Timestamp nowTime=new Timestamp(System.currentTimeMillis());
+                    int second= (int) ((System.currentTimeMillis()-startTime.getTime())/1000);
+                    int restSec=practice.getPracticeTime()*60-second;
 
+                    if (restSec>=0){
+                        int hh=restSec/3600;
+                        int mm=(restSec-hh*3600)/60;
+                        int ss=restSec%60;
+                        examtime=(hh<10?"0"+hh:hh)+":"+(hh<10?"0"+mm:mm)+":"+(ss<10?"0"+ss:ss);
+                    }else {
+                        examtime="00:00:00";
+                    }
+                }
+                else {
+                    examtime="00:00:00";
+                }
+            }
+            return SUCCESS;
+        }
+    }
 
 
     public User getUser() {

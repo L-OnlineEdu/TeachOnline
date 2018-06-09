@@ -1,5 +1,6 @@
 package com.action;
 
+import com.dao.Dao;
 import com.opensymphony.xwork2.ActionSupport;
 import com.pojo.Message;
 import com.pojo.SystemMessage;
@@ -12,6 +13,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import java.util.Date;
+import java.util.List;
 
 @Namespace("/")
 @ParentPackage("json-default")
@@ -24,6 +26,7 @@ public class DiscussAction extends ActionSupport {
     private int beAsked;
     private String messageDetial;
     private String msg;
+    private List stuList;
     @Autowired
     private TemporalMsgs temporalMsgs;
  /*   讨论：提供小组讨论、单独讨论、课堂讨论、举手、教师提问功能*/
@@ -103,6 +106,18 @@ public class DiscussAction extends ActionSupport {
         return SUCCESS;
     }
 
+    //学生列表
+    @Action(value = "stuList",results = {
+            @Result(name = SUCCESS,type = "json"),
+            @Result(name = ERROR,type = "json")
+    })
+    public String stuList(){
+        Dao dao=new Dao();
+        stuList=dao.selectAll("User u where u.role='stu'");
+        return SUCCESS;
+    }
+
+
     public int getMessagetype() {
         return messagetype;
     }
@@ -149,5 +164,13 @@ public class DiscussAction extends ActionSupport {
 
     public void setMsg(String msg) {
         this.msg = msg;
+    }
+
+    public List getStuList() {
+        return stuList;
+    }
+
+    public void setStuList(List stuList) {
+        this.stuList = stuList;
     }
 }

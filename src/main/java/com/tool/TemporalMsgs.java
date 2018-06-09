@@ -1,5 +1,7 @@
 package com.tool;
 
+import com.msg.loogPullling.LoogPullPushConn;
+import com.msg.webSocket.Push;
 import com.pojo.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -86,5 +88,17 @@ public class TemporalMsgs {
            return  ((WebSocketPush) myPush).readUnSentMessages(uid);
         }
         return null;
+    }
+
+
+    public int getOnlineNumber(){
+        if (myPush instanceof  WebSocketPush){
+            return Push.userSocketSessionMap.size();
+        }else if (myPush instanceof PushLongPooling){
+            return LoogPullPushConn.connections.size();
+        }else {
+            return 0;
+        }
+
     }
 }

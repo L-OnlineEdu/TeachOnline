@@ -1,6 +1,9 @@
 package com.action;
 
 import com.dao.Dao;
+import com.dao.ExamDao;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.opensymphony.xwork2.ActionSupport;
 import com.pojo.*;
 import com.tool.TemporalMsgs;
@@ -14,10 +17,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import java.sql.Timestamp;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Controller
 @Scope("prototype")
@@ -32,8 +33,10 @@ public class ExamAction extends ActionSupport{
    private String answers;
    private int rightNum;
    private int wrongNum;
-   private int score;
+   private int scores;
    private int examTime;
+   private String examTimeStr;
+   private List scoresList;
 
    @Autowired
    private TemporalMsgs temporalMsgs;
@@ -73,14 +76,10 @@ public class ExamAction extends ActionSupport{
             @Result(name = SUCCESS,type = "json"),
             @Result(name = ERROR,type = "json")
     })
-   public String pushPaper(){
+    public String pushPaper(){
 
         User sender= Utils.getUser();
         if (sender!=null){
-
-            SystemMessage systemMessage=new SystemMessage(SystemMessage.SystemMessageType_PaperPush,sender,0,"paperId:"+paperid+"examTime:"+examTime);
-            temporalMsgs.sendMessage(systemMessage);
-            msg="success";
             Dao dao=new Dao();
             Exam exam=new Exam();
             exam.setStartTimes(new Timestamp(System.currentTimeMillis())+"");
@@ -88,12 +87,19 @@ public class ExamAction extends ActionSupport{
             exam.setPaper((Paper) dao.select(Paper.class,paperid));
             exam.setExamTime(examTime);
             dao.add(exam);
+            System.out.println("eid:"+exam.getEid());
+            SystemMessage systemMessage=new SystemMessage(SystemMessage.SystemMessageType_PaperPush,
+                    sender,0,"paperId,"+paperid+",examTime,"+examTime);
+            System.out.println(systemMessage);
+            temporalMsgs.sendMessage(systemMessage);
+            msg="success";
+
         }else {
             msg="error";
         }
 
-       return SUCCESS;
-   }
+        return SUCCESS;
+    }
     //完成试卷
     @Action(value = "finishpaper",results = {
             @Result(name = SUCCESS,type = "json"),
@@ -102,65 +108,131 @@ public class ExamAction extends ActionSupport{
     public String finishPaper(){
 
         User sender= Utils.getUser();
-        SystemMessage systemMessage=new SystemMessage(SystemMessage.SystemMessageType_PaperFinish,sender,0,"paperscore:"+score);
+        SystemMessage systemMessage=new SystemMessage(SystemMessage.SystemMessageType_PaperFinish,sender,0,"paperscore:"+scores);
         temporalMsgs.sendMessage(systemMessage);
 
         return SUCCESS;
     }
 
     //批改试卷计算成绩
-    @Action(value = "correctpaper",results = {
+    @Action(value = "/stu/correctpaper",results = {
             @Result(name = SUCCESS,type = "json"),
             @Result(name = ERROR,type = "json")
     })
-   public String correctPaper(){
-       Paper p= (Paper) new Dao().select(Paper.class,paperid);
-       questionList=p.getQuestions();
-       Map <Integer,String> ansMap=new HashMap();
-       answers=answers.substring(1,answers.length());
+    public String correctPaper(){
+        Dao dao = new Dao();
+        Gson gson = new Gson();
+        Paper p= (Paper)dao.select(Paper.class,paperid);
+        questionList=p.getQuestions();
+        Map<Integer, String> rightAns = new HashMap<>();
+        for (int i = 0; i < questionList.size(); i ++){
+            rightAns.put(((Question)questionList.get(i)).getQuestionId(),
+                    ((Question)questionList.get(i)).getRightAnswer());
+        }
+        Map <Integer,String> ansMap=gson.fromJson( answers, new TypeToken<Map<Integer, String>>() { }.getType());
+
+
+       /*answers=answers.substring(1,answers.length());
+
+
        String ans[]=answers.split(",");
        for (String ss:ans){
            String [] ssx= ss.split(":");
            ansMap.put(Integer.parseInt(ssx[0]),ssx[1]);
-       }
-       for(Map.Entry<Integer,String> entry:ansMap.entrySet()){
-           String answer=entry.getValue();
-           Question q= (Question) questionList.get(entry.getKey());
-           String rightAnswer=q.getRightAnswer();
-           int qtype=q.getType();
-           if (qtype==Question.QuestionType_Other){
-               if (answer.indexOf(rightAnswer)>-1){
-                   rightNum+=1;
-               }
-           }else {
-               if (answer.equals(rightAnswer)){
-                   rightNum+=1;
-               }
-           }
-           score=rightNum;
-       }
-       wrongNum=questionList.size()-rightNum;
+       }*/
+        for(Map.Entry<Integer,String> entry:ansMap.entrySet()){
+            String answer=entry.getValue();
+//           Question q= (Question) questionList.get(entry.getKey());
+            String rightAnswer=rightAns.get(entry.getKey());
+            int qtype=((Question )dao.select(Question.class, entry.getKey())).getType();
+            if (qtype==Question.QuestionType_Other){
+                if (answer.indexOf(rightAnswer)>-1){
+                    rightNum+=1;
+                }
+            }else {
+                if (answer.equals(rightAnswer)){
+                    rightNum+=1;
+                }
+            }
+            scores=rightNum;
+        }
+        wrongNum=questionList.size()-rightNum;
 
-       if (answers!=null)
+        Date day=new Date();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+       // System.out.println(df.format(day));
+
+        Score score = new Score();
+        score.setScore(scores);
+        score.setDetials(answers);
+        score.setStudent(Utils.getUser());
+        score.setEndTime(df.format(day));
+        //score.setEndTime(new Timestamp(System.currentTimeMillis())+"");
+        ExamDao dao1=new ExamDao();
+        Exam recordExam=dao1.getLastExam();
+        score.setExam(recordExam);
+        dao.add(score);
+
+        if (answers!=null)
         {
-           msg="success";
-       }else {
-           msg="error";
-       }
+            temporalMsgs.sendMessage(new SystemMessage(SystemMessage.SystemMessageType_PaperFinish,Utils.getUser(),recordExam.getTeacher().getUid(),"score:"+scores));
+            msg="success";
+        }else {
+            msg="error";
+        }
+        return SUCCESS;
+    }
 
-       return SUCCESS;
-   }
+
+    //学生考试
+    @Action(value = "/stu/takeExam",results = {
+            @Result(name = SUCCESS,location = "/stu/stu.jsp")
+    })
+    public String takeExam(){
+        //Dao dao = new Dao();
+        //Exam exam = (Exam) dao.select(Exam.class, examid);
+        //paperid = exam.getPaper().getPid();
+        int restSec=examTime*60;
+
+        if (restSec>=0){
+            int hh=restSec/3600;
+            int mm=(restSec-hh*3600)/60;
+            int ss=restSec%60;
+            examTimeStr=(hh<10?"0"+hh:hh)+":"+(hh<10?"0"+mm:mm)+":"+(ss<10?"0"+ss:ss);
+        }else {
+            examTimeStr="00:00:00";
+        }
+        return SUCCESS;
+    }
 
 
 
-   /*view */
-   //学生考试
-   @Action(value = "/stu/takeExam",results = {
-           @Result(name = SUCCESS,location = "/stu/stu.jsp"),
-   })
-   public String takeExam(){
-       return SUCCESS;
-   }
+    //成绩
+    @Action(value = "/tea/scores",results = {
+            @Result(name = SUCCESS,type = "json"),
+            @Result(name = ERROR,type = "json")
+    })
+    public String socres(){
+        Dao dao = new Dao();
+        List<Score> scores=dao.selectAll("Score");
+        scoresList=new ArrayList();
+        for (Score score:scores){
+            ScoreReport scoreReport=new ScoreReport();
+            scoreReport.setScore(score.getScore());
+            scoreReport.setStu(score.getStudent().getUserName());
+            scoreReport.setTea(score.getExam().getTeacher().getUserName());
+
+            Timestamp startT=Timestamp.valueOf(score.getExam().getStartTimes());
+            Timestamp endT=Timestamp.valueOf(score.getEndTime());
+            int minutes= (int) ((endT.getTime()-startT.getTime())/60000);
+            scoreReport.setTime(minutes+"");
+            scoresList.add(scoreReport);
+        }
+        return SUCCESS;
+    }
+
+
+
 
 
 
@@ -182,12 +254,12 @@ public class ExamAction extends ActionSupport{
         this.wrongNum = wrongNum;
     }
 
-    public int getScore() {
-        return score;
+    public int getScores() {
+        return scores;
     }
 
-    public void setScore(int score) {
-        this.score = score;
+    public void setScores(int scores) {
+        this.scores = scores;
     }
 
     public String getMsg() {
@@ -236,5 +308,24 @@ public class ExamAction extends ActionSupport{
 
     public void setExamTime(int examTime) {
         this.examTime = examTime;
+    }
+
+
+   
+
+    public String getExamTimeStr() {
+        return examTimeStr;
+    }
+
+    public void setExamTimeStr(String examTimeStr) {
+        this.examTimeStr = examTimeStr;
+    }
+
+    public List getScoresList() {
+        return scoresList;
+    }
+
+    public void setScoresList(List scoresList) {
+        this.scoresList = scoresList;
     }
 }

@@ -25,7 +25,7 @@ import java.util.Map;
 @WebServlet(value="/longpolling", asyncSupported=true)
 @Service
 public class LoogPullPushConn  extends HttpServlet implements LoogPulling{
-    private static final Map<Integer,AsyncContext> connections = new HashMap<>();
+    public static final Map<Integer,AsyncContext> connections = new HashMap<>();
 
     private TemporalMsgs temporalMsgs;
     private User u;

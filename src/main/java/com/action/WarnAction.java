@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import java.util.List;
+
 @Controller
 @Scope("prototype")
 @Namespace("/")
@@ -22,6 +24,8 @@ public class WarnAction extends ActionSupport{
  private int punish;
  private String reason;
  private String msg;
+ private List warnList;
+ private int warnid;
  @Autowired
  private TemporalMsgs temporalMsgs;
 
@@ -48,6 +52,46 @@ public class WarnAction extends ActionSupport{
         msg="success";
         return SUCCESS;
     }
+
+
+    @Action(value = "allWarns",results = {
+            @Result(name = SUCCESS,type = "json"),
+            @Result(name = ERROR,type = "json")
+    })
+    public String warnInfo(){
+        //warnList=new ArrayList();
+        Dao dao=new Dao();
+        warnList=dao.selectAll("Warn");
+
+
+        msg="success";
+        return SUCCESS;
+    }
+
+    @Action(value = "delWarn",results = {
+            @Result(name = SUCCESS,type = "json"),
+            @Result(name = ERROR,type = "json")
+    })
+    public String delWarn(){
+        //warnList=new ArrayList();
+        Dao dao=new Dao();
+        if (warnid!=0){
+            Warn x= (Warn) dao.select(Warn.class,warnid);
+            if (x!=null){
+                dao.del(x);
+                msg="success";
+            }else {
+                System.out.println(warnid);
+            }
+
+        }else {
+            msg="error";
+        }
+
+        return SUCCESS;
+    }
+
+
 
     public int getBeWarned() {
         return beWarned;
@@ -79,5 +123,21 @@ public class WarnAction extends ActionSupport{
 
     public void setMsg(String msg) {
         this.msg = msg;
+    }
+
+    public List getWarnList() {
+        return warnList;
+    }
+
+    public void setWarnList(List warnList) {
+        this.warnList = warnList;
+    }
+
+    public int getWarnid() {
+        return warnid;
+    }
+
+    public void setWarnid(int warnid) {
+        this.warnid = warnid;
     }
 }

@@ -8,9 +8,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-
-
-
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -18,9 +15,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>远程教育考试平台_在线考试</title>
-    <link href="main.css" rel="stylesheet" type="text/css" />
-    <link href="iconfont.css" rel="stylesheet" type="text/css" />
-    <link href="test.css" rel="stylesheet" type="text/css" />
+
+    <link href="utils/main.css" rel="stylesheet" type="text/css" />
+    <link href="utils/iconfont.css" rel="stylesheet" type="text/css" />
+    <link href="utils/test.css" rel="stylesheet" type="text/css" />
 
     <style>
         .hasBeenAnswer {
@@ -28,22 +26,34 @@
             color:#fff;
         }
 
+        #modal1{
+            background: #0e93d7;
+            width: 320px;
+        }
+
     </style>
 </head>
 
 <body>
+
 <div class="main">
     <!--nr start-->
-    <input type="hidden" value="<s:property value="paperid"/>" id="th">
+    <form action="correctpaper" id="submitForm" method="post">
+        <input type="hidden" name="paperid" value="<s:property value="paperid"/>">
+        <input type="hidden" name="examid" value="<s:property value="examid"/>">
+        <input type="hidden" name="answers" id="answers">
+    </form>
+
     <div class="test_main">
         <div class="nr_left">
             <div class="test">
                 <form action="" method="post">
                     <div class="test_title">
+                        <input type="hidden" name="paperid" value="<s:property value="paperid"/>" id="th">
                         <p class="test_time">
-                            <i class="icon iconfont">&#xe6fb;</i><b class="alt-1">01:40</b>
+                            <i class="icon iconfont">&#xe6fb;</i><b class="alt-1"><s:property value="examTimeStr"/></b>
                         </p>
-                        <font><input type="button" name="test_jiaojuan" value="交卷"></font>
+                        <font><input type="button" name="test_jiaojuan" onclick="answers()" value="交卷"></font>
                     </div>
 
                     <div class="test_content">
@@ -56,9 +66,6 @@
                     </div>
                     <div class="test_content_nr">
                         <ul id="tbbox">
-
-
-
 
                         </ul>
                     </div>
@@ -77,16 +84,12 @@
                                                    value="%questionId%A"
                                                    id="0_answer_%keyx%_option_1" onclick="checkx(this,'%rightAnswer%')"
                                             />
-
-
                                             <label for="0_answer_%keyx%_option_1">
                                                 A.
                                                 <p class="ue" style="display: inline;">%a00%</p>
                                             </label>
                                         </li>
-
                                         <li class="option">
-
                                             <input type="radio" class="radioOrCheck" name="xx%questionId%"
                                                    value="%questionId%B"
                                                    id="0_answer_%keyx%_option_2" onclick="checkx(this,'%rightAnswer%')"
@@ -132,14 +135,14 @@
                                 </div>
                             </li>
                     </textarea>
-                 <%--   <div class="test_content">
-                        <div class="test_content_title">
-                            <h2>多选题</h2>
-                            <p>
-                                <span>共</span><i class="content_lit">30</i><span>题，</span><span>合计</span><i class="content_fs">30</i><span>分</span>
-                            </p>
-                        </div>
-                    </div>--%>
+                    <%--   <div class="test_content">
+                           <div class="test_content_title">
+                               <h2>多选题</h2>
+                               <p>
+                                   <span>共</span><i class="content_lit">30</i><span>题，</span><span>合计</span><i class="content_fs">30</i><span>分</span>
+                               </p>
+                           </div>
+                       </div>--%>
                     <!-- <div class="test_content_nr">
                         <ul>
 
@@ -222,7 +225,7 @@
                             <i class="icon iconfont">&#xe692;</i>答题卡
                         </h1>
                         <p class="test_time">
-                            <i class="icon iconfont">&#xe6fb;</i><b class="alt-1">01:40</b>
+                            <i class="icon iconfont">&#xe6fb;</i><b class="alt-1"><s:property value="examTimeStr"/></b>
                         </p>
                     </div>
 
@@ -237,10 +240,6 @@
                         <div class="rt_content_nr answerSheet">
                             <ul id="dtk">
 
-
-
-
-
                             </ul>
                             <textarea style="display: none" id="dtkt">
                                     <li id="dtk%questionId%"><a href="#qu_0_%keyx%">%key1%</a></li>
@@ -248,6 +247,7 @@
                             <hr>
                             <span>答对</span><i class="qright">0</i><span>题</span>
                             <span>答错</span><i class="qwrong">0</i><span>题</span>
+                            <span>目前得分</span><i id="prescores">0</i><span>分</span>
                         </div>
                     </div>
 
@@ -263,8 +263,6 @@
 
                                     <li><a href="#qu_1_0">1</a></li>
 
-
-
                             </ul>
                         </div>
                     </div> -->
@@ -278,10 +276,14 @@
     <div class="foot"></div>
 </div>
 
-<script src="jquery-1.11.3.min.js"></script>
-<script src="jquery.easy-pie-chart.js"></script>
+<script src="utils/jquery-1.11.3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/utils/swx/sweetalert.css">
+<script src="/utils/swx/sweetalert-dev.js"></script>
+<script type="text/javascript" src="/utils/js/materialize.min.js"></script>
+
+
 <!--时间js-->
-<script src="time/jquery.countdown.js"></script>
+<script src="/utils/time/jquery.countdown.js"></script>
 <script>
     window.jQuery(function($) {
         "use strict";
@@ -312,6 +314,7 @@
         });
     });
 </script>
+
 <script src="stu.js"></script>
 
 

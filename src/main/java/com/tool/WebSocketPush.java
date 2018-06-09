@@ -1,14 +1,11 @@
 package com.tool;
 
 import com.dao.Dao;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.msg.webSocket.Push;
 import com.pojo.Group;
 import com.pojo.Message;
 import com.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -136,6 +133,11 @@ public class WebSocketPush implements PushMsg {
         } else {
             return null;
         }
+    }
+
+
+    public int getOnlineNumber(){
+        return Push.userSocketSessionMap.size();
     }
 
     public Push getPush() {

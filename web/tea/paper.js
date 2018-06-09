@@ -40,10 +40,12 @@ $(function () {
   findpaper()
 })
 arrx=[]
+arrp=[]
 pushid='1'
 function findpaper(){
+
     $.ajax({
-        url:"/papers",
+        url:"/findAllPaperAction",
         data:"",
         success:function (data) {
             pushid=data.paperList[0].pid
@@ -54,6 +56,7 @@ function findpaper(){
             $.each(data.paperList,function (key,val) {
                 console.info("pid:"+val.pid)
                 pid=val.pid
+                arrp[pid]=val
                 arrx[pid]=val.questions
                 danti+=val.questions.length
 
@@ -77,6 +80,21 @@ function findpaper(){
             jiexi()
             $("#p0").children().addClass("selectx")
             $("#dtt").html(danti)
+
+            $(".deleteCl").click(function(){
+                var but = "<center><Button class='waves-effect waves-light btn red' onclick='de("+$(this).attr("id").substring(7)+")'>确认删除</Button></center>"
+                console.info("1234567890-"+but)
+                $("#alertChoose").openModal();
+                $("#alertChoose").children(":first").html(but);
+            })
+
+            $(".editorCl").click(function(){
+                var editId = $(this).attr("id").substring(7)
+                console.info("1234567890-"+editId)
+                editor(editId)
+                $("#alertEditor").openModal();
+                //$("#alertEditor").children(":first").html(but);
+            })
             $("#zjj").html(tiku)
 
         },
@@ -131,6 +149,7 @@ function jiexi() {
 
     })
     $("#qbox").html(ss)
+     dra()
 }
 function sendx() {
     //window.location.href="about:blank";
@@ -149,9 +168,12 @@ function sendx() {
             inputPlaceholder: "单位为分钟"
         },
         function(inputValue){
-            if (inputValue === false) return false;
 
-            if (inputValue === "") {
+            tt=/^[0-9]\d*$/
+
+
+
+            if (inputValue =="0"||!tt.test(inputValue)) {
                 swal.showInputError("输入测验所需时间");
                 return false
             }
@@ -181,4 +203,226 @@ function jx(t) {
     $(t).children().addClass("selectx")
     $(t).siblings().children().removeClass("selectx")
     jiexi()
+    $(".PaperContext").html(arrp[pushid].pcontext)
+    $(".PaperTime").html(arrp[pushid].ptime)
+	$(".editorPaperContext").val(arrp[pushid].pcontext)
+	$(".editorPaperTime").val(arrp[pushid].ptime)
 }
+
+$("#importQuestion").click(function(){
+    $("#importQ").openModal();
+})
+
+function de(qu){
+    console.info("dasdadasd"+qu)
+    $.ajax({
+        url:"/deleteQuestionAction.action",
+        type:"POST",
+        data:{"questionId":qu},
+        dataType:"json",
+        success:function(data){
+            setTimeout("location.reload();",3000)
+           // findpaper()
+        }
+
+    })
+}
+
+function editor(qu){
+    console.info("1234567-"+qu)
+    $.ajax({
+        url:"/selectQuestionAction.action",
+        type:"POST",
+        data:{"questionId":qu},
+        dataType:"json",
+        success:function(data){
+            var ane = data.question.answers
+            var Alocation = ane.indexOf("A")
+            var Blocation = ane.indexOf("B")
+            var Clocation = ane.indexOf("C")
+            var Dlocation = ane.indexOf("D")
+            var  str = ane.substring(Alocation,Blocation-1)+"\n"+ane.substring(Blocation,Clocation-1)+"\n"+ane.substring(Clocation,Dlocation-1)+"\n"+ane.substring(Dlocation)
+            $("#editorQuestionid").val(data.question.questionId)
+            $("#editorRightAnswer").val(data.question.rightAnswer)
+            $("#editorTitle").val(data.question.title)
+            $("#editorType").val(data.question.type)
+            $("#editorPaperId").val(data.question.pid)
+            $("#editorAnswer").val(str)
+        }
+
+    })
+}
+
+$("#editTrue").click(function(){
+    var questionid = $("#editorQuestionid").val()
+    var rightAnswer = $("#editorRightAnswer").val()
+    var title = $("#editorTitle").val()
+    var answers = $("#editorAnswer").val()
+    console.info("questionId  "+questionid+" "+rightAnswer+" "+title+" "+answers)
+    $.ajax({
+        url:"/updateQuestionAction.action",
+        type:"POST",
+        data:{"questionId":questionid,"rightAnswer":rightAnswer,"title":title,"answers":answers},
+        dataType:"json",
+        success:function(data){
+            setTimeout("location.reload();",3000)
+           // findpaper()
+        }
+
+    })
+})
+$(".PaperContext").dblclick(function(){
+	$(".PaperContext").hide()
+	$(".editorPaperContext").show()
+})
+
+$(".PaperTime").dblclick(function(){
+	$(".PaperTime").hide()
+	$(".editorPaperTime").show()
+})
+
+$(".editorPaperContext").blur(function(){
+	$(".editorPaperContext").hide()
+	$(".PaperContext").show()
+	var pid = arrp[pushid].pid
+	var pcontext = $(".editorPaperContext").val()
+	var ptime=$(".editorPaperTime").val()
+	 console.info("pcontext  "+pcontext+" "+ptime)
+	$.ajax({
+        url:"/updatePaperAction.action",
+		type:"POST",
+		data:{"pid":pid,"ptime":ptime,"pcontext":pcontext},
+		dataType:"json",
+		success:function(data){
+            setTimeout("location.reload();",3000)
+		}
+		
+	})
+})
+
+$(".editorPaperTime").blur(function(){
+	
+	var pid = pushid
+	var pcontext = $(".editorPaperContext").val()
+	var ptime=$(".editorPaperTime").val()
+	 console.info("pcontext  "+pid+" "+pcontext+" "+ptime)
+	$.ajax({
+		url:"/updatePaperAction.action",
+		type:"POST",
+		data:{"pid":pid,"ptime":ptime,"pcontext":pcontext},
+		dataType:"json",
+		success:function(data){
+			$(".editorPaperTime").hide()
+			$(".PaperTime").show()
+            setTimeout("location.reload();",3000)
+		}
+		
+	})
+
+})
+
+$(".delPaper").click(function(){
+	/*var pid = pushid
+	$.ajax({
+		url:"/deletePaperAction.action",
+		type:"POST",
+		data:{"pid":pid},
+		dataType:"json",
+		success:function(data){
+			window.location.href = "./pushpaper.jsp"
+		}
+		
+	})*/
+
+    swal({
+            title: "确定删除"+pid+"的试卷吗",
+            text: "",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "删除！",
+            closeOnConfirm: false
+        },
+        function(){
+            $.ajax({
+                url:"/deletePaperAction",
+                data:{"pid":pid},
+                success:function (data) {
+                        swal({
+                            title: "成功",
+                            text: pid+"的试卷已经被删除",
+                            timer: 3000,
+                            type:"success",
+                            showConfirmButton: false
+                        });
+                    setTimeout("location.reload();",3000)
+                },
+                error:function () {
+                    swal("失败","检查是否登录", "error");
+                }
+            })
+
+
+        });
+})
+
+$(".addPaper").click(function(){
+	$("#trash").show();
+})
+
+$("#addPaperTrue").click(function(){
+	listq=[]
+	var pname = $("#addPaperTitle").val()
+	var pcontext = $("#addContext").val()
+	var ptime = $("#addPaperTime").val()
+	 console.info("questionid  "+pname+" "+pcontext+" "+ptime)
+	 $("#addPaperQID").children().children().each(function(){
+		var quid = $(this).attr("id").substr(11)
+		listq.push(quid)
+		
+	})
+	var str = JSON.stringify(listq)
+	alert(str)
+	$.ajax({
+		url:"/addPaperAction.action",
+		type:"POST",
+		data:{"pname":pname,"pcontext":pcontext,"ptime":ptime,"questionList":str},
+		dataType:"json",
+		success:function(data){
+            setTimeout("location.reload();",3000)
+		}
+		
+	})
+})
+
+function dra(){
+	$(".drag").draggable({
+	      cancel: "a.ui-icon", //点击图标不会启动拖动
+	      revert: "invalid", // 当物品不掉落时，物品将恢复到其初始位置
+	      containment: "document",
+	      opacity: 0.7,
+	      helper: "clone",//移动留痕迹
+	      cursor: "move",
+	      drag:function(event, ui){
+	       	
+	    	  //ui.helper.animate({height:"25px",width:"25px"});
+	      }
+	    });
+}
+$("#trash").droppable({
+      drop: function( event, ui ) {
+    	  deleteImage(ui.draggable)
+      }
+    });
+function deleteImage( $item ) {
+  $item.fadeOut(function() {
+    var $list = $( "ul", $("#addPaperQID") ).length ?
+      $( "ul", $("#addPaperQID")  ) :
+      $( "<ul class='gallery ui-helper-reset ulsP'/>" ).appendTo( $("#addPaperQID") );
+    $item.append( "" ).appendTo( $list ).fadeIn(function() {
+    });
+  });
+  
+}
+
+ 

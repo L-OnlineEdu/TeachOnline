@@ -1,7 +1,5 @@
 package com.pojo;
 
-import com.google.gson.annotations.Expose;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -53,7 +51,7 @@ public class User {
         this.role = role;
     }
 
-    @ManyToMany(targetEntity = Group.class)
+    @ManyToMany(targetEntity = Group.class,fetch=FetchType.EAGER)
     @JoinTable(name = "gruops_2_users",joinColumns = @JoinColumn(name="uid"),inverseJoinColumns = @JoinColumn(name="gid"))
     public List getGroups() {
         return groups;
