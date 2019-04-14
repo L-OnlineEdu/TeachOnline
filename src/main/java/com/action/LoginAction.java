@@ -68,7 +68,7 @@ public class LoginAction extends ActionSupport {
         //return SUCCESS;
     }
 
-    @Action(value = "/feedStu",results = {
+        @Action(value = "/feedStu",results = {
             @Result(name = SUCCESS,type = "json"),
             @Result(name = ERROR,type = "json")
     })
